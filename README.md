@@ -1,2 +1,2 @@
-# React-Learning-Samples
+# React-Learning-Samples ⚛️
 simple react examples
