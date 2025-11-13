@@ -23,7 +23,7 @@ function App() {
           make your React app using this commands:
           <br/>
           <span style={{fontWeight: "bold"}}>
-            npm create-react-app@latest my-app
+            npx create-react-app@latest my-app
             <br/>
             cd my-app
             <br/>
