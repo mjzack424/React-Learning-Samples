@@ -6,20 +6,22 @@ const Hello = () => {
   return (
     <div className="border">
       <h1>Hello World!</h1>
-      <p>*in app component</p>
+      <p>*const</p>
       <p>*NEW</p>
+      <p>*in app component</p>
     </div>
   );
 };
 
-function Hello2 () {
+function Hello2() {
   return (
-      <div className="border">
-        <h1>Hello World!</h1>
-        <p>*in app component</p>
-        <p>*OLD</p>
-      </div>
-    );
+    <div className="border">
+      <h1>Hello World!</h1>
+      <p>*function</p>
+      <p>*OLD</p>
+      <p>*in app component</p>
+    </div>
+  );
 }
 
 class Hello3 extends Component {
@@ -27,8 +29,9 @@ class Hello3 extends Component {
     return (
       <div className="border">
         <h1>Hello World!</h1>
-        <p>*in app component</p>
+        <p>*class</p>
         <p>*ClASSIC</p>
+        <p>*in app component</p>
       </div>
     );
   }
