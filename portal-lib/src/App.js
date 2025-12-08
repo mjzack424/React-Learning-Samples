@@ -1,14 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import PortalLib from "./components/PortalLib";
+import SafePortalsLib from "./components/SafePortalsLib";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Portal Libs
-        </p>
+        <p>Portal Libs</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -18,6 +18,10 @@ function App() {
           Learn React
         </a>
       </header>
+      <main>
+        <PortalLib />
+        <SafePortalsLib />
+      </main>
     </div>
   );
 }
