@@ -1,7 +1,31 @@
 import "./App.css";
-import { useState, lazy, Suspense } from "react";
+import React, {  useState } from "react";
 
-const MyComponent = lazy(() => import("./components/LazyComp"));
+function loadComponent(importFunc) {
+  return class WrappedComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        Component: null,
+      };
+    }
+    componentDidMount() {
+      importFunc().then((module) => {
+        this.setState({
+          Component: module.default,
+        });
+      });
+    }
+
+    render() {
+      return this.state.Component ? (
+        <this.state.Component {...this.props} />
+      ) : null;
+    }
+  };
+}
+
+const MyComponent = loadComponent(()=> import("./components/LazyComp"));
 
 function App() {
   const [names, setNames] = useState([]);
@@ -13,7 +37,7 @@ function App() {
     ).toUpper;
     setNames(makeUpperCase(names));
   };
-  return ( 
+  return (
     <div className="App">
       <header className="App-header">
         <p>code spilitting lazy</p>
@@ -24,12 +48,8 @@ function App() {
           <p key={index}>{name}</p>
         ))}
       </main>
-      <hr />
-      {names.length > 0 && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <MyComponent />
-        </Suspense>
-      )}
+      <hr/>
+      {names.length > 0 && <MyComponent />}
     </div>
   );
 }
