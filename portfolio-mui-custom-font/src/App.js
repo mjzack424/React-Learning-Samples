@@ -9,22 +9,15 @@ import { prefixer } from "stylis";
 // بعد (جدید و درست):
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Button } from "@mui/material";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
-// RTL theme
-const theme = createTheme({
-  direction: "rtl",
-  typography: {
-    fontFamily: "vazir, roboto",
-  },
-});
 
+import { theme } from "./components/theme";
 // RTL cache
 const rtlCache = createCache({
   key: "mui-rtl",

@@ -22,7 +22,9 @@ const Header = () => {
       <ElevationScroll>
         <AppBar>
           <Toolbar>
-            <Button variant="primary">کلیک کن</Button>
+            <Button variant="contained" color="success">
+              کلیک کن
+            </Button>
 
             <p>وب سایت شخصی محمد جواد ذاکریان</p>
           </Toolbar>
