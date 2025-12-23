@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 //Toolbar: alow you add appBar Horizantaly
-
+import {styled} from "@mui/material/styles"
 function ElevationScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -22,12 +22,19 @@ function ElevationScroll(props) {
     : null;
 }
 
+const CustomizedButton = styled(Button) `
+  color: lime;
+`
+
 const Header = () => {
   return (
     <>
       <ElevationScroll>
         <AppBar>
           <Toolbar>
+            <CustomizedButton variant="contained" color="info">
+               کلیک کن
+            </CustomizedButton>
             <Button variant="contained" color="success">
               کلیک کن
             </Button>
