@@ -48,6 +48,9 @@ const Header = () => {
             <Typography variant="caption" padding={1}>
               وب سایت شخصی محمد جواد ذاکریان
             </Typography>
+            <Typography variant="h4" sx={{marginLeft:10, typography: "h3"}}>
+              وب سایت شخصی محمد جواد ذاکریان 1
+            </Typography>
             <img src={logo} alt="لوگو وب سایت" style={{ width: "3rem" }} />
           </Toolbar>
         </AppBar>
