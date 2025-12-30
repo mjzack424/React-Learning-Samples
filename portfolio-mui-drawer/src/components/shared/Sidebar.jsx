@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import { Typography, Box, Divider, Avatar, Tab, Tabs } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import {
+  Typography,
+  Box,
+  Divider,
+  Avatar,
+  Tab,
+  Tabs,
+  Drawer,
+  Fab,
+  SwipeableDrawer,
+} from "@mui/material";
+import { grey, red } from "@mui/material/colors";
 import {
   HomeRounded,
   InsertEmoticonRounded,
@@ -11,154 +21,63 @@ import {
   ConnectWithoutContactRounded,
   FavoriteRounded,
   CopyrightRounded,
+  MenuRounded,
 } from "@mui/icons-material";
+import DrawerContent from "./DrawerContent";
 // حالت برای تشخیص اینکه تصویر لود نشد
 
 const Sidebar = ({ value, handleChange }) => {
-  const tabProps = (index) => {
-    return {
-      id: `sidebar-tab-${index}`,
-      "aria-controls": `tabpanel-${index}`,
-    };
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
   };
 
-  const name = "محمد جواد ذاکریان";
-  const mysummary = "فرانت انت دولاپر و علاقه مند به یادیگری.";
-  //   const imageAddress = require("../../assets/images/prof1.jpg");
-  const [imageError, setImageError] = useState(false);
-  const [profImage, setProfImage] = useState(null);
-
-  // حروف اولیه نام برای fallback
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
-
-  useEffect(() => {
-    const loadImage = async () => {
-      try {
-        // dynamic import – اگر فایل نبود، ارور می‌ده اما catch می‌شه
-        const image = await import("../../assets/images/prof1.jpg");
-        setProfImage(image.default);
-      } catch (err) {
-        // فایل پیدا نشد → fallback رو فعال کن
-        console.warn("تصویر پروفایل پیدا نشد، از fallback استفاده می‌شود.");
-        setImageError(true);
-      }
-    };
-
-    loadImage();
-  }, []);
   return (
+    <>
     <Grid
-      display={{ xs: "none", md: "block" }}
-      size={{ md: 2 }}
-      sx={{ backgroundColor: grey[900] }}
-    >
-      <Box
-        sx={{
-          justifyContent: "center",
-          textAlign: "center",
-          mt: 2,
-        }}
-      >
-        <Avatar
-          alt="تصویر پروفایل محمد جواد ذاکریان"
-          title={"تصویر پروفایل"}
-          src={imageError ? undefined : profImage}
-          onError={() => setImageError(true)} // وقتی تصویر لود نشد، حالت رو تغییر بده
-          variant="rounded"
-          sx={{
-            width: "80%", // حداکثر ۸۰٪ عرض sidebar
-            height: "auto", // نسبت حفظ بشه
-            maxWidth: 200, // بیشتر از ۲۰۰ نشه
-            mx: "auto",
-            my: 2,
-          }}
-        >
-          {imageError ? initials : null}{" "}
-          {/* اگر تصویر نبود، حروف اولیه رو نشون بده */}
-        </Avatar>
-        <Typography variant="h6">{name}</Typography>
-        <Typography variant="caption">{mysummary}</Typography>
-        <Divider sx={{ backgroundColor: grey[900], mt: 2 }} variant="middle" />
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          scrollButtons="auto"
-          allowScrollButtonsMobile
-          value={value}
-          onChange={handleChange}
-        >
-          <Tab
-            label="صفحه اصلی"
-            icon={<HomeRounded />}
-            iconPosition="start"
-            {...tabProps(0)}
-          ></Tab>
-          <Tab
-            label="درباره من"
-            icon={<InsertEmoticonRounded />}
-            iconPosition="start"
-            {...tabProps(1)}
-          ></Tab>
-          <Tab
-            label="رزومه من"
-            icon={<SpeakerNotesRounded />}
-            iconPosition="start"
-            {...tabProps(2)}
-          ></Tab>
-          <Tab
-            label="نمونه کار ها"
-            icon={<TerminalRounded />}
-            iconPosition="start"
-            {...tabProps(3)}
-          />
-          <Tab
-            label="نظرات"
-            icon={<CommentRounded />}
-            iconPosition="start"
-            {...tabProps(4)}
-          />
-          <Tab
-            label="ارتباط با من"
-            icon={<ConnectWithoutContactRounded />}
-            iconPosition="start"
-            {...tabProps(5)}
-          />
-          {/* <Tab
-            label={
-              <div>
-                <Typography variant="subtitle2" color="white">
-                  <HomeRounded sx={{verticalAlign: "middle", mx:2}}/>
-                  خانه
-                </Typography>
-              </div>
-            }
-          ></Tab> */}
-        </Tabs>
-        <Divider variant="middle" color={grey[900]} sx={{ mt: 2 }} />
-        <Box
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "end",
-            alignItems: "center",
-            height: 100,
-          }}
-        >
-          <Typography variant="subtitle2" color="whitesmoke">
-            طراحی شده با توسط محمد جواد ذاکریان
-          </Typography>
-          <Typography variant="caption" color="whitesmoke">
-            کپی رایت 1404
-            <CopyrightRounded sx={{ verticalAlign: "middle", mx: 2 }} />
-          </Typography>
-        </Box>
-      </Box>
-    </Grid>
+  display={{ xs: "none", md: "block" }}
+  size={{ md: 2 }}
+  sx={{ backgroundColor: grey[900] }}
+>
+  {/* این بخش در موبایل نمایش داده نمی‌شود */}
+  <DrawerContent value={value} handleChange={handleChange} />
+  
+  
+  
+  <Drawer
+    open={drawerOpen}
+    variant="temporary"
+    onClose={() => setDrawerOpen(false)}
+    sx={{
+      "& .MuiDrawer-paper": {
+        width: 420,
+      },
+    }}
+  >
+    <DrawerContent value={value} handleChange={handleChange} />
+  </Drawer>
+</Grid>
+
+{/* دکمه شناور برای موبایل - جدا از Grid */}
+<Box
+  display={{ xs: "block", md: "none" }}
+  sx={{
+    position: "fixed",
+    top: 16,
+    left: 16,
+    zIndex: 10000,
+  }}
+>
+  <Fab
+    color="primary"
+    aria-label="Sidebar"
+    size="small"
+    onClick={handleDrawerToggle}
+  >
+    <MenuRounded />
+  </Fab>
+</Box>
+    </>
   );
 };
 
