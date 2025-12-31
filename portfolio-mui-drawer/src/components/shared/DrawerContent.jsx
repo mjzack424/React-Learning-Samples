@@ -93,42 +93,102 @@ const DrawerContent = ({ value, handleChange }) => {
         allowScrollButtonsMobile
         value={value}
         onChange={handleChange}
+        sx={{
+          "& .MuiTabs-flexContainer": {
+            alignItems: "center", // یا 'stretch' برای کشیده شدن
+          },
+        }}
       >
         <Tab
           label="صفحه اصلی"
           icon={<HomeRounded />}
           iconPosition="start"
           {...tabProps(0)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            // minWidth: "100%", // حداقل عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         ></Tab>
         <Tab
           label="درباره من"
           icon={<InsertEmoticonRounded />}
           iconPosition="start"
           {...tabProps(1)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         ></Tab>
         <Tab
           label="رزومه من"
           icon={<SpeakerNotesRounded />}
           iconPosition="start"
           {...tabProps(2)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         ></Tab>
         <Tab
           label="نمونه کار ها"
           icon={<TerminalRounded />}
           iconPosition="start"
           {...tabProps(3)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         />
         <Tab
           label="نظرات"
           icon={<CommentRounded />}
           iconPosition="start"
           {...tabProps(4)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         />
         <Tab
           label="ارتباط با من"
           icon={<ConnectWithoutContactRounded />}
           iconPosition="start"
           {...tabProps(5)}
+          sx={{
+            m: 1,
+            backgroundColor: grey[800],
+            borderRadius: 2,
+            width: "100%", // عرض کامل
+            "&.MuiTab-root": {
+              minHeight: 50,
+            },
+          }}
         />
         {/* <Tab
             label={
