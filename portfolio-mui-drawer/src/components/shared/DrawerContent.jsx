@@ -22,7 +22,7 @@ import {
   CopyrightRounded,
 } from "@mui/icons-material";
 // حالت برای تشخیص اینکه تصویر لود نشد
-const DrawerContent = ({ value, handleChange }) => {
+const DrawerContent = ({ value, handleChange, setDrawerOpen =()=>{} }) => {
   const tabProps = (index) => {
     return {
       id: `sidebar-tab-${index}`,
@@ -114,6 +114,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         ></Tab>
         <Tab
           label="درباره من"
@@ -129,6 +130,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         ></Tab>
         <Tab
           label="رزومه من"
@@ -144,6 +146,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         ></Tab>
         <Tab
           label="نمونه کار ها"
@@ -159,6 +162,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         />
         <Tab
           label="نظرات"
@@ -174,6 +178,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         />
         <Tab
           label="ارتباط با من"
@@ -189,6 +194,7 @@ const DrawerContent = ({ value, handleChange }) => {
               minHeight: 50,
             },
           }}
+          onClick={() => setDrawerOpen?.(false)}
         />
         {/* <Tab
             label={
@@ -213,7 +219,7 @@ const DrawerContent = ({ value, handleChange }) => {
         }}
       >
         <Typography variant="subtitle2" color="whitesmoke">
-          طراحی شده با توسط محمد جواد ذاکریان
+          طراحی شده توسط محمد جواد ذاکریان
         </Typography>
         <Typography variant="caption" color="whitesmoke">
           کپی رایت 1404

@@ -54,7 +54,7 @@ const Sidebar = ({ value, handleChange }) => {
       },
     }}
   >
-    <DrawerContent value={value} handleChange={handleChange} />
+    <DrawerContent value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen} />
   </Drawer>
 </Grid>
 
