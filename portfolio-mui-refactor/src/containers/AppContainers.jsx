@@ -1,10 +1,11 @@
 import { useState } from "react";
 import MainLayout from "../layout/MainLayout";
 import ContentContainer from "./ContentContainer";
-import Sidebar from "../components/sidebar/Sidebar";
+import {Sidebar} from "../components/sidebar/index";
 import TabPanel from "../components/shared/TabPanel";
 import { Typography } from "@mui/material";
 import SidebarContainer from "./SidebarContainer";
+
 
 function AppContainers() {
   const [value, setValue] = useState(0);

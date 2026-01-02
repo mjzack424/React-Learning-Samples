@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import {
   HomeRounded,
@@ -8,30 +8,16 @@ import {
   CommentRounded,
   ConnectWithoutContactRounded,
 } from "@mui/icons-material";
-import SidebarHeader from "../sidebar/SidebarHeader";
-import SidebarFooter from "../sidebar/SidebarFooter";
-// حالت برای تشخیص اینکه تصویر لود نشد
-const DrawerContent = ({ value, handleChange, setDrawerOpen = () => {} }) => {
+
+const SidebarTabs = ({ value, handleChange, setDrawerOpen }) => {
   const tabProps = (index) => {
     return {
       id: `sidebar-tab-${index}`,
       "aria-controls": `tabpanel-${index}`,
     };
   };
-
-  const name = "محمد جواد ذاکریان";
-  const mysummary = "فرانت انت دولاپر و علاقه مند به یادیگری.";
-
   return (
-    <Box
-      sx={{
-        justifyContent: "center",
-        textAlign: "center",
-        mt: 2,
-      }}
-    >
-      {/* Sidebar Header */}
-      <SidebarHeader name={name} mysummary={mysummary} />
+    <>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -153,10 +139,8 @@ const DrawerContent = ({ value, handleChange, setDrawerOpen = () => {} }) => {
             }
           ></Tab> */}
       </Tabs>
-      {/* Sidebar Footer */}
-      <SidebarFooter />
-    </Box>
+    </>
   );
 };
 
-export default DrawerContent;
+export default SidebarTabs;

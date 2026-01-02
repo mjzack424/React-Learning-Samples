@@ -1,28 +1,11 @@
-import { useState, useEffect } from "react";
-import {
-  Typography,
-  Box,
-  Divider,
-  Avatar,
-  Tab,
-  Tabs,
-  Drawer,
-  Fab,
-  SwipeableDrawer,
-} from "@mui/material";
-import {
-  HomeRounded,
-  InsertEmoticonRounded,
-  SpeakerNotesRounded,
-  TerminalRounded,
-  CommentRounded,
-  ConnectWithoutContactRounded,
-  FavoriteRounded,
-  CopyrightRounded,
-  MenuRounded,
-} from "@mui/icons-material";
-import DrawerContent from "../shared/DrawerContent";
-// حالت برای تشخیص اینکه تصویر لود نشد
+import { useState } from "react";
+import { Box, Drawer, Fab } from "@mui/material";
+import { MenuRounded } from "@mui/icons-material";
+import Grid from "@mui/material/Grid";
+import { grey } from "@mui/material/colors";
+
+import {SidebarContent} from "./index";
+
 
 const Sidebar = ({ value, handleChange }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -32,8 +15,13 @@ const Sidebar = ({ value, handleChange }) => {
 
   return (
     <>
-      {/* این بخش در موبایل نمایش داده نمی‌شود */}
-      <DrawerContent value={value} handleChange={handleChange} />
+      <Grid
+        display={{ xs: "none", md: "block" }}
+        size={{ md: 2 }}
+        sx={{ backgroundColor: grey[900] }}
+      >
+        <SidebarContent value={value} handleChange={handleChange} />
+      </Grid>
 
       <Drawer
         open={drawerOpen}
@@ -45,13 +33,12 @@ const Sidebar = ({ value, handleChange }) => {
           },
         }}
       >
-        <DrawerContent
+        <SidebarContent
           value={value}
           handleChange={handleChange}
           setDrawerOpen={setDrawerOpen}
         />
       </Drawer>
-      {/* دکمه شناور برای موبایل - جدا از Grid */}
       <Box
         display={{ xs: "block", md: "none" }}
         sx={{
