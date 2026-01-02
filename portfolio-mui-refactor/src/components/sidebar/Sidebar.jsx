@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Box, Drawer, Fab } from "@mui/material";
-import { MenuRounded } from "@mui/icons-material";
+
 import Grid from "@mui/material/Grid";
 import { grey } from "@mui/material/colors";
 
-import {SidebarContent} from "./index";
+import { SidebarContent } from "./index";
+import { SidebarDrawer, ActionButtonDrawer } from "../drawer";
+
 
 
 const Sidebar = ({ value, handleChange }) => {
@@ -22,41 +23,14 @@ const Sidebar = ({ value, handleChange }) => {
       >
         <SidebarContent value={value} handleChange={handleChange} />
       </Grid>
-
-      <Drawer
-        open={drawerOpen}
-        variant="temporary"
-        onClose={() => setDrawerOpen(false)}
-        sx={{
-          "& .MuiDrawer-paper": {
-            width: 420,
-          },
-        }}
-      >
+      <SidebarDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}>
         <SidebarContent
           value={value}
           handleChange={handleChange}
           setDrawerOpen={setDrawerOpen}
         />
-      </Drawer>
-      <Box
-        display={{ xs: "block", md: "none" }}
-        sx={{
-          position: "fixed",
-          top: 16,
-          left: 16,
-          zIndex: 10000,
-        }}
-      >
-        <Fab
-          color="primary"
-          aria-label="Sidebar"
-          size="small"
-          onClick={handleDrawerToggle}
-        >
-          <MenuRounded />
-        </Fab>
-      </Box>
+      </SidebarDrawer>
+      <ActionButtonDrawer handleDrawerToggle={handleDrawerToggle}/>
     </>
   );
 };
