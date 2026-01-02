@@ -13,9 +13,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
-import { theme } from "../theme";
-import Sidebar from "../shared/Sidebar";
-import ContentContainer from "../shared/ContentContainer";
+import { theme } from "./theme/index";
 
 // RTL cache
 const rtlCache = createCache({
