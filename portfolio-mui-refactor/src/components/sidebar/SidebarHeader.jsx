@@ -16,7 +16,7 @@ const SidebarHeader = ({ name, mysummary }) => {
     const loadImage = async () => {
       try {
         // dynamic import – اگر فایل نبود، ارور می‌ده اما catch می‌شه
-        const image = await import("../../assets/images/prof1.jpg");
+        const image = await import("../../assets/images/prof1.jpg"); //TZT
         setProfImage(image.default);
       } catch (err) {
         // فایل پیدا نشد → fallback رو فعال کن

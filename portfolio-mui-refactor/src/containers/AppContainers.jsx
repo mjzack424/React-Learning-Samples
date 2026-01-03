@@ -1,11 +1,13 @@
 import { useState } from "react";
-import MainLayout from "../layout/MainLayout";
-import PagesContainer from "./PagesContainer";
-import { Sidebar } from "../components/sidebar/index";
-import Page from "../pages/components/Page";
 import { Typography, Box } from "@mui/material";
+
+import { Sidebar } from "../components/sidebar/index";
+import PagesContainer from "./PagesContainer";
+import MainLayout from "../layout/MainLayout";
+import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
+import bg01 from "../assets/images/bg01.jpeg";
 
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -27,7 +29,7 @@ function AppContainers() {
           <Page pageNumber={pageNumber} index={0}>
             <Box
               sx={{
-                backgroundImage: `url(${require("../assets/images/bg01.jpeg")})`,
+                backgroundImage: `url(${bg01})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
