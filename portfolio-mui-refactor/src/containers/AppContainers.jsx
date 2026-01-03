@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { Sidebar } from "../components/sidebar/index";
 import PagesContainer from "./PagesContainer";
@@ -7,7 +7,7 @@ import MainLayout from "../layout/MainLayout";
 import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
-import bg01 from "../assets/images/bg01.jpeg";
+import { Home } from "../pages";
 
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -27,23 +27,7 @@ function AppContainers() {
         </SidebarContainer>
         <PagesContainer>
           <Page pageNumber={pageNumber} index={0}>
-            <Box
-              sx={{
-                backgroundImage: `url(${bg01})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                height: "100vh",
-              }}
-            >
-              <Typography
-                variant="h5"
-                sx={{ textAlign: "center" }}
-                color="whitesmoke"
-              >
-                صفحه اصلی
-              </Typography>
-            </Box>
+            <Home />
           </Page>
           <Page pageNumber={pageNumber} index={1}>
             <Typography variant="h5" sx={{ textAlign: "center" }}>
