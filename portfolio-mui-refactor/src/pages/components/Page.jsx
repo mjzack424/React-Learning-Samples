@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Fade } from "@mui/material";
 
 const Page = (props) => {
   const { children, pageNumber, index, ...others } = props;
+  const isActive = pageNumber === index;
   return (
     <div
       role="tabpanel"
@@ -11,15 +12,17 @@ const Page = (props) => {
       {...others}
     >
       {pageNumber === index && (
-        <Box
-          sx={{
-            //  p: 3,
-            height: "100vh",
-            overflow: "hidden",
-          }}
-        >
-          {children}
-        </Box>
+        <Fade in={isActive} timeout={500} unmountOnExit>
+          <Box
+            sx={{
+              //  p: 3,
+              height: "100vh",
+              overflow: "hidden",
+            }}
+          >
+            {children}
+          </Box>
+        </Fade>
       )}
     </div>
   );
