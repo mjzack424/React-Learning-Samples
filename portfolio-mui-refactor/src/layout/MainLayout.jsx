@@ -31,7 +31,9 @@ const MainLayout = ({ children }) => {
             <title>وب سایت شخصی محمد جواد ذاکریان</title>
           </Helmet>
           {/* Grid System */}
-          <Grid container spacing={1} sx={{ height: "100vh", padding: "8px" }}>
+          <Grid container spacing={1} sx={{ height: "100vh", 
+            // padding: "8px"
+             }}>
             {children}
           </Grid>
         </ThemeProvider>

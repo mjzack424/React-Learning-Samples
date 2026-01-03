@@ -12,7 +12,12 @@ const Sidebar = () => {
       <Grid
         display={{ xs: "none", md: "block" }}
         size={{ md: 2 }}
-        sx={{ backgroundColor: grey[900] }}
+        sx={{
+          backgroundColor: grey[900],
+          height: "100vh",
+          overflowY: "auto",
+          overflowX: "hidden",
+        }}
       >
         <SidebarContent />
       </Grid>

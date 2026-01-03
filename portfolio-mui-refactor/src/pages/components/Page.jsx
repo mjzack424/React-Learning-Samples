@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-const TabPanel = (props) => {
+const Page = (props) => {
   const { children, pageNumber, index, ...others } = props;
   return (
     <div
@@ -11,11 +11,11 @@ const TabPanel = (props) => {
       {...others}
     >
       {pageNumber === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        <Box sx={{
+          //  p: 3,
+           height: "100vh", overflow: "hidden" }}>{children}</Box>
       )}
     </div>
   );
 };
-export default TabPanel;
+export default Page;
