@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { Drawer } from "@mui/material";
-const SidebarDrawer = ({ children, drawerOpen, setDrawerOpen }) => {
+import MainContext from "../../context";
+const SidebarDrawer = ({ children }) => {
+  const { drawerOpen, setDrawerOpen } = useContext(MainContext);
   return (
     <Drawer
       open={drawerOpen}

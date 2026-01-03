@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Tab, Tabs } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import {
@@ -9,7 +10,10 @@ import {
   ConnectWithoutContactRounded,
 } from "@mui/icons-material";
 
-const SidebarTabs = ({ value, handleChange, setDrawerOpen }) => {
+import MainContext from "../../context";
+const SidebarTabs = () => {
+  const { pageNumber, handlePageNumber, setDrawerOpen } =
+    useContext(MainContext);
   const tabProps = (index) => {
     return {
       id: `sidebar-tab-${index}`,
@@ -23,8 +27,8 @@ const SidebarTabs = ({ value, handleChange, setDrawerOpen }) => {
         variant="scrollable"
         scrollButtons="auto"
         allowScrollButtonsMobile
-        value={value}
-        onChange={handleChange}
+        value={pageNumber}
+        onChange={handlePageNumber}
         sx={{
           "& .MuiTabs-flexContainer": {
             alignItems: "center", // یا 'stretch' برای کشیده شدن

@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-
 import { Typography, Divider, Avatar } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-const SidebarHeader = ({
-  name,
-  mysummary,
-}) => {
+const SidebarHeader = ({ name, mysummary }) => {
   const [imageError, setImageError] = useState(false);
   const [profImage, setProfImage] = useState(null);
   // حروف اولیه نام برای fallback

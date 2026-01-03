@@ -1,13 +1,9 @@
 import { Box } from "@mui/material";
 
-import {
-  SidebarFooter,
-  SidebarHeader,
-  SidebarTabs,
-} from "../sidebar/index";
+import { SidebarFooter, SidebarHeader, SidebarTabs } from "../sidebar/index";
 
 // حالت برای تشخیص اینکه تصویر لود نشد
-const SidebarContent = ({ value, handleChange, setDrawerOpen = () => {} }) => {
+const SidebarContent = () => {
   const name = "محمد جواد ذاکریان";
   const mysummary = "فرانت انت دولاپر و علاقه مند به یادیگری.";
 
@@ -20,11 +16,7 @@ const SidebarContent = ({ value, handleChange, setDrawerOpen = () => {} }) => {
       }}
     >
       <SidebarHeader name={name} mysummary={mysummary} />
-      <SidebarTabs
-        value={value}
-        handleChange={handleChange}
-        setDrawerOpen={setDrawerOpen}
-      />
+      <SidebarTabs />
       <SidebarFooter />
     </Box>
   );

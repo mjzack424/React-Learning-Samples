@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Box, Fab } from "@mui/material";
 import { MenuRounded } from "@mui/icons-material";
-const ActionButtonDrawer = ({handleDrawerToggle}) => {
+
+import MainContext from "../../context";
+const ActionButtonDrawer = () => {
+  const { setDrawerOpen, drawerOpen } = useContext(MainContext);
   return (
     <Box
       display={{ xs: "block", md: "none" }}
@@ -15,7 +19,9 @@ const ActionButtonDrawer = ({handleDrawerToggle}) => {
         color="primary"
         aria-label="Sidebar"
         size="small"
-        onClick={handleDrawerToggle}
+        onClick={() => {
+          setDrawerOpen(!drawerOpen);
+        }}
       >
         <MenuRounded />
       </Fab>
