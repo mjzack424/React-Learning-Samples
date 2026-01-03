@@ -1,7 +1,7 @@
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 // قبل (قدیمی):
 //import rtlPlugin from "stylis-plugin-rtl";

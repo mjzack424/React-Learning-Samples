@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Page = (props) => {
   const { children, pageNumber, index, ...others } = props;
@@ -11,9 +11,15 @@ const Page = (props) => {
       {...others}
     >
       {pageNumber === index && (
-        <Box sx={{
-          //  p: 3,
-           height: "100vh", overflow: "hidden" }}>{children}</Box>
+        <Box
+          sx={{
+            //  p: 3,
+            height: "100vh",
+            overflow: "hidden",
+          }}
+        >
+          {children}
+        </Box>
       )}
     </div>
   );
