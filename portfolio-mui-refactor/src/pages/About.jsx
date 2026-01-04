@@ -7,14 +7,18 @@ import {
   Chip,
   Avatar,
   Grid,
+  Box,
+  Tooltip,
 } from "@mui/material";
 import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
+import CountUp from "react-countup";
 
 import DevInfo from "../pages/components/DevInfo";
 import Skill from "../pages/components/Skill";
 import avatat from "../assets/images/prof2.jpg";
 import { devSkills } from "../constants/skills";
+import { devWorkInfo } from "../constants/details";
 
 const About = () => {
   const [html, setHtml] = useState(0);
@@ -110,11 +114,45 @@ const About = () => {
                   sx={{ p: 3 }}
                 ></Chip>
               </Divider>
-              <DevInfo>نام و نام خانوادگی: محمد جواد ذاکریان</DevInfo>
-              <DevInfo>سن: 30</DevInfo>
-              <DevInfo>شهر: قم</DevInfo>
-              <DevInfo>پست الکترونیک: zack424@yahoo.com</DevInfo>
-              <DevInfo>شماره موبایل: 09387207944</DevInfo>
+              <Grid
+                container
+                sx={{
+                  "& .MuiDivider-wrapper": { paddingLeft: 0, paddingRight: 0 },
+                  width: 1,
+                }}
+              >
+                <Grid size={{ xs: 12, md: 10 }}>
+                  <DevInfo>نام و نام خانوادگی: محمد جواد ذاکریان</DevInfo>
+                  <DevInfo>سن: 30</DevInfo>
+                  <DevInfo>شهر: قم</DevInfo>
+                  <DevInfo>پست الکترونیک: zack424@yahoo.com</DevInfo>
+                  <DevInfo>شماره موبایل: 09387207944</DevInfo>
+                </Grid>
+                <Grid
+                  size={{ xs: 4, md: 2 }}
+                  display={{ xs: "none", md: "block" }}
+                >
+                  {devWorkInfo.map((item, index) => (
+                    <Box key={index} sx={{ width: 1, mb: 2 }}>
+                      <Tooltip title={item.tooltipTitle} placement="right" arrow>
+                        <Chip
+                          icon={item.icon}
+                          label={
+                            <Typography variant="body1" color="whitesmoke">
+                              <CountUp
+                                start={0}
+                                end={item.total}
+                                duration={2}
+                              />
+                            </Typography>
+                          }
+                          sx={{ p: 2, backgroundColor: item.color, width: 1 }}
+                        />
+                      </Tooltip>
+                    </Box>
+                  ))}
+                </Grid>
+              </Grid>
             </Grid>
             <Grid size={{ xs: 0, md: 4 }} display={{ xs: "none", md: "block" }}>
               <Avatar
