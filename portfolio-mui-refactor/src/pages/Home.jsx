@@ -2,7 +2,7 @@ import { Typography, Box } from "@mui/material";
 import Typed from "typed.js";
 
 import bg01 from "../assets/images/bg01.jpeg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState,useMemo } from "react";
 
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -13,16 +13,17 @@ const Home = () => {
   const infoEl = useRef(null);
   const [particlesLoaded, setParticlesLoaded] = useState(false);
 
-  const strings = [
-    "#" + "من یک توسعه دهنده فرانت اند هستم",
-    "#" +"من یک برنامه نویس هستم",
-    "#" +"من یک بازی ساز هستم",
-    "#" +"من یک مدرس هستم",
-  ];
+  const strings = useMemo(
+  () => [
+    "#من یک توسعه دهنده فرانت اند هستم.",
+    "#من یک برنامه نویس هستم.",
+    "#من یک بازی ساز هستم.",
+    "#من یک مدرس هستم.",
+  ],
+  []
+);
 
   useEffect(() => {
-    
-
     const typedName = new Typed(nameEl.current, {
       strings: ["محمد جواد ذاکریان"],
       typeSpeed: 110,
@@ -116,7 +117,7 @@ const Home = () => {
         sx={{
           textAlign: "center",
           textDecoration: "underline",
-          textDecorationColor: "##c1fffd",
+          textDecorationColor: "#c1fffd",
         }}
         color="whitesmoke"
       ></Typography>
