@@ -17,7 +17,8 @@ const Page = (props) => {
             sx={{
               //  p: 3,
               height: "100vh",
-              overflow: "hidden",
+              // overflow: "hidden",
+              overflowY: "auto"
             }}
           >
             {children}

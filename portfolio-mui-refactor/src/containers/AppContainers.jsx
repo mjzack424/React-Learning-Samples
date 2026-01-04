@@ -29,9 +29,8 @@ function AppContainers() {
           <Page pageNumber={pageNumber} index={0}>
             <Home />
           </Page>
-          <Page pageNumber={pageNumber} index={1} tit>
+          <Page pageNumber={pageNumber} index={1}>
             <About />
-            
           </Page>
           <Page pageNumber={pageNumber} index={2}>
             <Typography variant="h5" sx={{ textAlign: "center" }}>
