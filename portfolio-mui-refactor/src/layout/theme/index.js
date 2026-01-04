@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import {red, } from "@mui/material/colors"
+import { red } from "@mui/material/colors";
 // RTL theme
 export const theme = createTheme({
   direction: "ltr",
@@ -16,7 +16,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "vazir, roboto",
+    fontFamily: " tanha, vazir, roboto",
     button: {
       fontFamily: "tahoma",
     },
@@ -32,13 +32,13 @@ export const theme = createTheme({
         root: {
           variants: [
             {
-              props: { variant: 'dashed', color: 'secondary' },
+              props: { variant: "dashed", color: "secondary" },
               style: {
                 border: `4px dashed ${red[500]}`,
               },
             },
             {
-              props: { variant: 'dashed', color: 'black' },
+              props: { variant: "dashed", color: "black" },
               style: {
                 border: `4px dashed ${"white"}`,
               },
