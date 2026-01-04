@@ -7,7 +7,7 @@ import MainLayout from "../layout/MainLayout";
 import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
-import { Home } from "../pages";
+import { Home, About } from "../pages";
 
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -29,10 +29,9 @@ function AppContainers() {
           <Page pageNumber={pageNumber} index={0}>
             <Home />
           </Page>
-          <Page pageNumber={pageNumber} index={1}>
-            <Typography variant="h5" sx={{ textAlign: "center" }}>
-              درباره من
-            </Typography>
+          <Page pageNumber={pageNumber} index={1} tit>
+            <About />
+            
           </Page>
           <Page pageNumber={pageNumber} index={2}>
             <Typography variant="h5" sx={{ textAlign: "center" }}>
