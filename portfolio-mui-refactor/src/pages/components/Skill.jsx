@@ -1,5 +1,4 @@
 import { Divider, Chip, Box, Typography, LinearProgress } from "@mui/material";
-import html5 from "../../assets/icons/html5-original.svg";
 const Skill = ({ icon, color, name, value }) => {
   return (
     <>
@@ -37,7 +36,7 @@ const Skill = ({ icon, color, name, value }) => {
             fontSize={"medium"}
             fontWeight={"bold"}
           >
-            {value}%
+            {Math.round(value)}%
           </Typography>
         </Box>
 
@@ -46,7 +45,11 @@ const Skill = ({ icon, color, name, value }) => {
             variant="determinate"
             value={value}
             color={color}
-            sx={{ height: 10, borderRadius: 2 }}
+            sx={{
+              height: 10,
+              borderRadius: 2,
+              //  transform: 'scaleX(-1)'
+            }}
           />
         </Box>
       </Box>
