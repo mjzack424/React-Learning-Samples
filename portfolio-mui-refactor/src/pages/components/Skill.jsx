@@ -16,7 +16,7 @@ const Skill = ({ icon, color, name, value }) => {
           "&::before, &::after": {
             borderColor: `${color}.main`,
           },
-          mt: 1,
+          mt: 4,
         }}
       >
         <Chip
