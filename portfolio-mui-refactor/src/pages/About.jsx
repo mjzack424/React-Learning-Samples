@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Box,
   Typography,
   Card,
   CardContent,
@@ -9,12 +8,7 @@ import {
   Avatar,
   Grid,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
-import {
-  SelfImprovementRounded,
-  CodeRounded,
-  KeyboardArrowLeftRounded,
-} from "@mui/icons-material";
+import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
 
 import DevInfo from "../pages/components/DevInfo";

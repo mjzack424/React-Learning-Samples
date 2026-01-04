@@ -45,7 +45,7 @@ const Home = () => {
       typedName.destroy();
       typedInfo.destroy();
     };
-  }, []);
+  }, [strings]);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {

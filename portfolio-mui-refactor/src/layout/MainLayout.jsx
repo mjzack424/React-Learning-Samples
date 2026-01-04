@@ -27,7 +27,6 @@ const MainLayout = ({ children }) => {
       <CacheProvider value={rtlCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {/* Grid System */}
           <Grid
             container
             spacing={1}

@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 
 import { SidebarFooter, SidebarHeader, SidebarTabs } from "../sidebar/index";
+import { grey } from "@mui/material/colors";
 
 // حالت برای تشخیص اینکه تصویر لود نشد
 const SidebarContent = () => {
@@ -16,6 +17,7 @@ const SidebarContent = () => {
       }}
     >
       <SidebarHeader name={name} mysummary={mysummary} />
+      <Divider variant="middle" color={grey[900]} sx={{}}/>
       <SidebarTabs />
       <SidebarFooter />
     </Box>
