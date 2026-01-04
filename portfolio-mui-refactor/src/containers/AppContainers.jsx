@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
+
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { Sidebar } from "../components/sidebar/index";
 import PagesContainer from "./PagesContainer";
@@ -12,6 +15,15 @@ import { Home, About } from "../pages";
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const theme = useTheme();
+  const isSmUp = useMediaQuery(theme.breakpoints.up("md"));
+
+  useEffect(() => {
+    if (isSmUp) {
+      setDrawerOpen(false);
+    }
+  }, [isSmUp]);
 
   const handlePageNumber = (event, newValue) => {
     setPageNumber(newValue);
