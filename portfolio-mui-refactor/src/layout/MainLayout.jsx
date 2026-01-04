@@ -11,7 +11,7 @@ import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 
 import { theme } from "./theme/index";
 
@@ -27,9 +27,6 @@ const MainLayout = ({ children }) => {
       <CacheProvider value={rtlCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Helmet>
-            <title>وب سایت شخصی محمد جواد ذاکریان</title>
-          </Helmet>
           {/* Grid System */}
           <Grid
             container

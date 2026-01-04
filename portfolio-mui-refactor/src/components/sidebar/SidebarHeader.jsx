@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Typography, Divider, Avatar } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { RandomReveal } from 'react-random-reveal'
-import {persianAlphabet} from "../../constants/persianAlphabet"
+import { RandomReveal } from "react-random-reveal";
+import { persianAlphabet } from "../../constants/persianAlphabet";
 
 const SidebarHeader = ({ name, mysummary }) => {
   const [imageError, setImageError] = useState(false);
@@ -49,8 +49,13 @@ const SidebarHeader = ({ name, mysummary }) => {
         {/* اگر تصویر نبود، حروف اولیه رو نشون بده */}
       </Avatar>
       <Typography variant="h6">
-        <RandomReveal isPlaying duration={1} characterSet={persianAlphabet} characters={name}/>
-        </Typography>
+        <RandomReveal
+          isPlaying
+          duration={1}
+          characterSet={persianAlphabet}
+          characters={name}
+        />
+      </Typography>
       <Typography variant="caption">{mysummary}</Typography>
       <Divider sx={{ backgroundColor: grey[900], mt: 2 }} variant="middle" />
     </>

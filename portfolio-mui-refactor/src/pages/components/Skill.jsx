@@ -2,7 +2,6 @@ import {
   Divider,
   Chip,
   Box,
-  Typography,
   LinearProgress,
   Badge,
 } from "@mui/material";

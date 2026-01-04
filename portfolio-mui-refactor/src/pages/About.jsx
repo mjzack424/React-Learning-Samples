@@ -15,6 +15,7 @@ import {
   CodeRounded,
   KeyboardArrowLeftRounded,
 } from "@mui/icons-material";
+import { Helmet } from "react-helmet-async";
 
 import DevInfo from "../pages/components/DevInfo";
 import Skill from "../pages/components/Skill";
@@ -66,6 +67,9 @@ const About = () => {
     devSkills;
   return (
     <>
+      <Helmet>
+        <title>وب سایت محمد جواد ذاکریان | درباره من</title>
+      </Helmet>
       <Card
         sx={{
           height: "100vh",
