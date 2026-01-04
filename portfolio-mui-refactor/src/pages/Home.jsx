@@ -11,21 +11,23 @@ import { lifeSpan } from "../constants/particles";
 const Home = () => {
   const nameEl = useRef(null);
   const infoEl = useRef(null);
-    const [particlesLoaded, setParticlesLoaded] = useState(false);
+  const [particlesLoaded, setParticlesLoaded] = useState(false);
 
   const strings = [
-    "من یک توسعه دهنده فرانت اند هستم",
-    "من یک برنامه نویس هستم",
-    "من یک بازی ساز هستم",
-    "من یک مدرس هستم",
+    "#" + "من یک توسعه دهنده فرانت اند هستم",
+    "#" +"من یک برنامه نویس هستم",
+    "#" +"من یک بازی ساز هستم",
+    "#" +"من یک مدرس هستم",
   ];
 
   useEffect(() => {
+    
+
     const typedName = new Typed(nameEl.current, {
-      strings: ["[[ محمد جواد ذاکریان ]]"],
-      typeSpeed: 50,
-      backSpeed: 20,
-      backDelay: 10,
+      strings: ["محمد جواد ذاکریان"],
+      typeSpeed: 110,
+      backSpeed: 80,
+      backDelay: 50,
       showCursor: false,
     });
     const typedInfo = new Typed(infoEl.current, {
@@ -67,7 +69,7 @@ const Home = () => {
         overflow: "hidden",
       }}
     >
-       {particlesLoaded && (
+      {particlesLoaded && (
         <Box
           sx={{
             position: "absolute",
@@ -90,12 +92,24 @@ const Home = () => {
           />
         </Box>
       )}
-      <Typography
-        ref={nameEl}
-        variant="h3"
-        sx={{ textAlign: "center" }}
-        color="whitesmoke"
-      ></Typography>
+      <Box component={"div"} sx={{ display: "flex" }}>
+        <Typography
+          variant="h3"
+          sx={{ textAlign: "center" }}
+          color="whitesmoke"
+        >{`|`}</Typography>
+        <Typography
+          ref={nameEl}
+          variant="h3"
+          sx={{ textAlign: "center" }}
+          color="whitesmoke"
+        ></Typography>
+        <Typography
+          variant="h3"
+          sx={{ textAlign: "center" }}
+          color="whitesmoke"
+        >{`|`}</Typography>
+      </Box>
       <Typography
         ref={infoEl}
         variant="h4"
@@ -110,86 +124,3 @@ const Home = () => {
   );
 };
 export default Home;
-
-
-
-
-
-const شسیسشی = () => {
-  const nameEl = useRef(null);
-  const infoEl = useRef(null);
-
-
-  const strings = [
-    "من یک توسعه دهنده فرانت اند هستم",
-    "من یک برنامه نویس هستم",
-    "من یک بازی ساز هستم",
-    "من یک مدرس هستم",
-  ];
-
-  useEffect(() => {
-    const typedName = new Typed(nameEl.current, {
-      strings: ["[[ محمد جواد ذاکریان ]]"],
-      typeSpeed: 50,
-      backSpeed: 20,
-      backDelay: 10,
-      showCursor: false,
-    });
-    const typedInfo = new Typed(infoEl.current, {
-      strings: strings,
-      startDelay: 1500,
-      typeSpeed: 80,
-      backSpeed: 50,
-      backDelay: 50,
-      loop: true,
-      showCursor: false,
-    });
-    return () => {
-      typedName.destroy();
-      typedInfo.destroy();
-    };
-  }, []);
-
-  
-
-  return (
-    <Box
-      sx={{
-        backgroundImage: `url(${bg01})`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-     
-
-      <Typography
-        ref={nameEl}
-        variant="h3"
-        sx={{ textAlign: "center" }}
-        color="whitesmoke"
-      ></Typography>
-      <Typography
-        ref={infoEl}
-        variant="h4"
-        sx={{
-          textAlign: "center",
-          textDecoration: "underline",
-          textDecorationColor: "#c1fffd",
-        }}
-        color="whitesmoke"
-      ></Typography>
-    </Box>
-  );
-};
-
-
-
-
