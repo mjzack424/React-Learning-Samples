@@ -9,7 +9,7 @@ import { loadSlim } from "@tsparticles/slim";
 import { lifeSpan } from "../constants/particles";
 import { Helmet } from "react-helmet-async";
 
-const Home = () => {
+const Home = ({ helmetTitle }) => {
   const nameEl = useRef(null);
   const infoEl = useRef(null);
   const [particlesLoaded, setParticlesLoaded] = useState(false);
@@ -58,11 +58,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>
-          وب سایت محمد جواد ذاکریان
-          |
-          صفحه اصلی
-        </title>
+        <title>{helmetTitle}</title>
       </Helmet>
       <Box
         sx={{

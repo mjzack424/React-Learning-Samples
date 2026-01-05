@@ -6,6 +6,7 @@ import {
   Box,
   IconButton,
   Link,
+  Zoom,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { RandomReveal } from "react-random-reveal";
@@ -16,6 +17,7 @@ import { persianAlphabet } from "../../constants/persianAlphabet";
 const SidebarHeader = ({ name, mysummary }) => {
   const [imageError, setImageError] = useState(false);
   const [profImage, setProfImage] = useState(null);
+  const [show, setShow] = useState(false);
   // حروف اولیه نام برای fallback
   const initials = name
     .split(" ")
@@ -36,7 +38,12 @@ const SidebarHeader = ({ name, mysummary }) => {
       }
     };
 
+    const timer = setTimeout(() => {
+      setShow(true);
+    }, 350);
+
     loadImage();
+    return () => clearTimeout(timer);
   }, []);
   return (
     <>
@@ -68,36 +75,42 @@ const SidebarHeader = ({ name, mysummary }) => {
       <Typography variant="caption">{mysummary}</Typography>
       {/* <Divider sx={{ backgroundColor: grey[900], mt: 2 }} variant="middle" /> */}
       <Box component={"div"} sx={{ m: "0 auto", textAlign: "center" }}>
-        <IconButton aria-label="GitHub">
-          {/* // Method 2: Opening in a new tab/window */}
-          <Link
-            href="https://github.com/mjzack424"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GitHub sx={{color:"gray"}}/>
-          </Link>
-        </IconButton>
-        <IconButton aria-label="GitHub">
-          {/* // Method 2: Opening in a new tab/window */}
-          <Link
-            href="https://t.me/Make_3DAssets_Free"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Telegram sx={{color:"gray"}}/>
-          </Link>
-        </IconButton>
-        <IconButton aria-label="GitHub">
-          {/* // Method 2: Opening in a new tab/window */}
-          <Link
-            href="https://www.instagram.com/zack424_artworks/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Instagram sx={{color:"gray"}}/>
-          </Link>
-        </IconButton>
+        <Zoom in={show}>
+          <IconButton aria-label="GitHub">
+            {/* // Method 2: Opening in a new tab/window */}
+            <Link
+              href="https://github.com/mjzack424"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHub sx={{ color: "gray" }} />
+            </Link>
+          </IconButton>
+        </Zoom>
+        <Zoom in={show}>
+          <IconButton aria-label="GitHub">
+            {/* // Method 2: Opening in a new tab/window */}
+            <Link
+              href="https://t.me/Make_3DAssets_Free"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Telegram sx={{ color: "gray" }} />
+            </Link>
+          </IconButton>
+        </Zoom>
+        <Zoom in={show}>
+          <IconButton aria-label="GitHub">
+            {/* // Method 2: Opening in a new tab/window */}
+            <Link
+              href="https://www.instagram.com/zack424_artworks/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram sx={{ color: "gray" }} />
+            </Link>
+          </IconButton>
+        </Zoom>
       </Box>
     </>
   );

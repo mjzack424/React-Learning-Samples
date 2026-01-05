@@ -10,7 +10,7 @@ import MainLayout from "../layout/MainLayout";
 import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
-import { Home, About } from "../pages";
+import { Home, About, Resume } from "../pages";
 
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -29,6 +29,11 @@ function AppContainers() {
     setPageNumber(newValue);
   };
 
+  const pageTitleMaker = (page) => {
+    const text = "وب سایت محمد جواد ذاکریان | ";
+    return `${text}${page}`;
+  };
+
   return (
     <MainContext.Provider
       value={{ pageNumber, handlePageNumber, drawerOpen, setDrawerOpen }}
@@ -39,15 +44,13 @@ function AppContainers() {
         </SidebarContainer>
         <PagesContainer>
           <Page pageNumber={pageNumber} index={0}>
-            <Home />
+            <Home helmetTitle={pageTitleMaker("صفحه اصلی")} />
           </Page>
           <Page pageNumber={pageNumber} index={1}>
-            <About />
+            <About helmetTitle={pageTitleMaker("درباره من")} />
           </Page>
           <Page pageNumber={pageNumber} index={2}>
-            <Typography variant="h5" sx={{ textAlign: "center" }}>
-              رزومه من
-            </Typography>
+            <Resume helmetTitle={pageTitleMaker("رزومه")} />
           </Page>
           <Page pageNumber={pageNumber} index={3}>
             <Typography variant="h5" sx={{ textAlign: "center" }}>

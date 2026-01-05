@@ -9,12 +9,13 @@ import {
   Grid,
   Box,
   Tooltip,
+  Fab,
+  Zoom,
 } from "@mui/material";
 import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
 import CountUp from "react-countup";
 
-import { Fab, Zoom } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import DevInfo from "../pages/components/DevInfo";
@@ -23,7 +24,7 @@ import avatat from "../assets/images/prof2.jpg";
 import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
 
-const About = () => {
+const About = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
 
@@ -35,17 +36,17 @@ const About = () => {
   const [js, setJs] = useState(0);
 
   useEffect(() => {
-  const el = scrollRef.current;
-  if (!el) return;
+    const el = scrollRef.current;
+    if (!el) return;
 
-  const onScroll = () => {
-    setShowScroll(el.scrollTop > 1);
-  };
+    const onScroll = () => {
+      setShowScroll(el.scrollTop > 1);
+    };
 
-  el.addEventListener("scroll", onScroll);
+    el.addEventListener("scroll", onScroll);
 
-  return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
-}, []);
+    return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
+  }, []);
 
   const scrollToTop = () => {
     scrollRef.current.scrollTo({
@@ -92,7 +93,7 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>وب سایت محمد جواد ذاکریان | درباره من</title>
+        <title>{helmetTitle}</title>
       </Helmet>
       <Card
         ref={scrollRef}
@@ -101,7 +102,6 @@ const About = () => {
           backgroundColor: "whitesmoke",
           overflowY: "auto",
         }}
-        title="درباره من"
       >
         <CardContent>
           <Grid container sx={{ ms: 3 }} direction="row-reverse">
