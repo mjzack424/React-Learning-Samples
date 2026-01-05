@@ -15,9 +15,14 @@ import { Home, About, Resume, Projects, Comments } from "../pages";
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mode, setMode] = useState();
 
   const theme = useTheme();
   const isSmUp = useMediaQuery(theme.breakpoints.up("md"));
+
+  useEffect(() => {
+    setMode("dark");
+  }, []);
 
   useEffect(() => {
     if (isSmUp) {
@@ -29,6 +34,10 @@ function AppContainers() {
     setPageNumber(newValue);
   };
 
+  const handleThemeChange = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
+
   const pageTitleMaker = (page) => {
     const text = "وب سایت محمد جواد ذاکریان | ";
     return `${text}${page}`;
@@ -36,9 +45,15 @@ function AppContainers() {
 
   return (
     <MainContext.Provider
-      value={{ pageNumber, handlePageNumber, drawerOpen, setDrawerOpen }}
+      value={{
+        pageNumber,
+        handlePageNumber,
+        drawerOpen,
+        setDrawerOpen,
+        handleThemeChange,
+      }}
     >
-      <MainLayout>
+      <MainLayout mode={mode}>
         <SidebarContainer>
           <Sidebar />
         </SidebarContainer>

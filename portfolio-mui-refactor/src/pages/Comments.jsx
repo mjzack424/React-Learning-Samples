@@ -14,13 +14,7 @@ import {
   Box,
 } from "@mui/material";
 
-import {
-  KeyboardArrowUp,
-  Badge,
-  HomeRepairServiceRounded,
-  SchoolRounded,
-  ForumRounded,
-} from "@mui/icons-material";
+import { KeyboardArrowUp, ForumRounded } from "@mui/icons-material";
 
 import Slider from "react-slick";
 
@@ -32,7 +26,7 @@ const Comments = ({ helmetTitle }) => {
 
   const [loading, setLoading] = useState(false);
 
-   const options = {
+  const options = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -140,73 +134,78 @@ const Comments = ({ helmetTitle }) => {
               </Slide>
             </Grid>
             <Grid
-  size={12}
-  sx={{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "60vh",
-  }}
->
-  <Box
-    component="div"
-    sx={{
-      width: { xs: "90%", sm: "80%", md: "70%" }, // عرض responsive
-      maxWidth: 800,
-    }}
-  >
-    <Slider {...options}>
-      {userComments.map((item, index) => (
-        <Box
-          key={index}
-          component="div"
-          sx={{
-            justifyContent: "center",
-            textAlign: "center",
-            padding: 2,
-          }}
-        >
-          <Avatar
-            src={item.avatar}
-            variant="rounded"
-            sx={{ height: 100, width: 100, margin: "0 auto", mb: 2 }}
-          />
-          <Typography
-            variant="body1"
-            textAlign="center"
-            color="black"
-            fontWeight="bold"
-          >
-            {item.fullname}
-          </Typography>
-          <Typography
-            variant="body2"
-            textAlign="center"
-            color="text.secondary"
-            sx={{ mt: 1, mb: 2 }}
-          >
-            {item.jobTitle}
-          </Typography>
-          <Card
-            sx={{
-              backgroundColor: "lightsalmon",
-              width: { xs: "100%", sm: "80%" },
-              margin: "0 auto",
-              borderRadius: 5,
-              mt: 2,
-            }}
-          >
-            <CardContent>
-              <Typography variant="body2" textAlign="center">
-                {item.comment}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
-      ))}
-    </Slider>
-  </Box>
-</Grid>
+              size={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "60vh",
+              }}
+            >
+              <Box
+                component="div"
+                sx={{
+                  width: { xs: "90%", sm: "80%", md: "70%" }, // عرض responsive
+                  maxWidth: 800,
+                }}
+              >
+                <Slider {...options}>
+                  {userComments.map((item, index) => (
+                    <Box
+                      key={index}
+                      component="div"
+                      sx={{
+                        justifyContent: "center",
+                        textAlign: "center",
+                        padding: 2,
+                      }}
+                    >
+                      <Avatar
+                        src={item.avatar}
+                        variant="rounded"
+                        sx={{
+                          height: 100,
+                          width: 100,
+                          margin: "0 auto",
+                          mb: 2,
+                        }}
+                      />
+                      <Typography
+                        variant="body1"
+                        textAlign="center"
+                        color="black"
+                        fontWeight="bold"
+                      >
+                        {item.fullname}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        textAlign="center"
+                        color="text.secondary"
+                        sx={{ mt: 1, mb: 2 }}
+                      >
+                        {item.jobTitle}
+                      </Typography>
+                      <Card
+                        sx={{
+                          backgroundColor: "lightsalmon",
+                          width: { xs: "100%", sm: "80%" },
+                          margin: "0 auto",
+                          borderRadius: 5,
+                          mt: 2,
+                        }}
+                      >
+                        <CardContent>
+                          <Typography variant="body2" textAlign="center">
+                            {item.comment}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Box>
+                  ))}
+                </Slider>
+              </Box>
+            </Grid>
           </Grid>
         </CardContent>
       </Card>

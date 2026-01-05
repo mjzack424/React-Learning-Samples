@@ -1,16 +1,10 @@
 import { useState, useEffect } from "react";
-import {
-  Typography,
-  Avatar,
-  Box,
-  IconButton,
-  Link,
-  Zoom,
-} from "@mui/material";
+import { Typography, Avatar, Box, IconButton, Link, Zoom } from "@mui/material";
 import { RandomReveal } from "react-random-reveal";
 import { GitHub, Telegram, Instagram } from "@mui/icons-material";
 
 import { persianAlphabet } from "../../constants/persianAlphabet";
+import ThemeActionButton from "../ThemeActionButton";
 
 const SidebarHeader = ({ name, mysummary }) => {
   const [imageError, setImageError] = useState(false);
@@ -45,6 +39,7 @@ const SidebarHeader = ({ name, mysummary }) => {
   }, []);
   return (
     <>
+      <ThemeActionButton />
       <Avatar
         alt="تصویر پروفایل محمد جواد ذاکریان"
         title={"تصویر پروفایل"}

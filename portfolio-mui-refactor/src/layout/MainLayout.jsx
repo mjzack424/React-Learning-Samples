@@ -13,7 +13,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { HelmetProvider } from "react-helmet-async";
 
-import { theme } from "./theme/index";
+import { DarkTheme, LightTheme } from "./theme/index";
 
 // RTL cache
 const rtlCache = createCache({
@@ -21,7 +21,8 @@ const rtlCache = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, mode }) => {
+  const theme = mode === "dark" ? DarkTheme : LightTheme;
   return (
     <HelmetProvider>
       <CacheProvider value={rtlCache}>
