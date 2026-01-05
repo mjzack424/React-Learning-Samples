@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import {
   Typography,
-  Divider,
   Avatar,
   Box,
   IconButton,
   Link,
   Zoom,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { RandomReveal } from "react-random-reveal";
 import { GitHub, Telegram, Instagram } from "@mui/icons-material";
 

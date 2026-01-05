@@ -10,7 +10,7 @@ import MainLayout from "../layout/MainLayout";
 import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
-import { Home, About, Resume, Projects } from "../pages";
+import { Home, About, Resume, Projects, Comments } from "../pages";
 
 function AppContainers() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -56,9 +56,7 @@ function AppContainers() {
             <Projects helmetTitle={pageTitleMaker("نمونه کار ها")} />
           </Page>
           <Page pageNumber={pageNumber} index={4}>
-            <Typography variant="h5" sx={{ textAlign: "center" }}>
-              نظرات
-            </Typography>
+            <Comments helmetTitle={pageTitleMaker("نظرات")} />
           </Page>
           <Page pageNumber={pageNumber} index={5}>
             <Typography variant="h5" sx={{ textAlign: "center" }}>

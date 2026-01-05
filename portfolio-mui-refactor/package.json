@@ -24,6 +24,8 @@
     "react-random-reveal": "^2.0.1",
     "react-router-dom": "^7.11.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1",
     "stylis": "^4.3.6",
     "stylis-plugin-rtl": "^2.1.1",
     "typed.js": "^2.1.0",
