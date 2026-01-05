@@ -43,7 +43,7 @@ const About = () => {
   };
 
   el.addEventListener("scroll", onScroll);
-  
+
   return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
 }, []);
 
@@ -99,7 +99,7 @@ const About = () => {
         sx={{
           height: "100vh",
           backgroundColor: "whitesmoke",
-          overflowY: "scroll",
+          overflowY: "auto",
         }}
         title="درباره من"
       >
