@@ -5,10 +5,7 @@ import {
   CardContent,
   Divider,
   Chip,
-  Avatar,
   Grid,
-  Box,
-  Tooltip,
   Fab,
   Zoom,
   Slide,
@@ -191,7 +188,7 @@ const Resume = ({ helmetTitle }) => {
                         <TimelineDot variant="outlined" color="warning">
                           <HomeRepairServiceRounded color="warning" />
                         </TimelineDot>
-                        {index != devEdu.length - 1 ? (
+                        {index !== devEdu.length - 1 ? (
                           <TimelineConnector />
                         ) : null}
                       </TimelineSeparator>
@@ -274,7 +271,7 @@ const Resume = ({ helmetTitle }) => {
                         <TimelineDot variant="outlined" color="info">
                           <SchoolRounded color="info" />
                         </TimelineDot>
-                        {index != devEdu.length - 1 ? (
+                        {index !== devEdu.length - 1 ? (
                           <TimelineConnector />
                         ) : null}
                       </TimelineSeparator>
@@ -282,7 +279,7 @@ const Resume = ({ helmetTitle }) => {
                         <Typography variant="caption" color="gray">
                           {item.year}
                         </Typography>
-                        <Typography variant="body1" color="black"> 
+                        <Typography variant="body1" color="black">
                           {item.cert}
                         </Typography>
                         <Typography variant="body2" color="black">
