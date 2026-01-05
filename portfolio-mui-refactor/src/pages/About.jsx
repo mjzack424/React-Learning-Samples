@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Typography,
   Card,
@@ -14,6 +14,9 @@ import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
 import CountUp from "react-countup";
 
+import { Fab, Zoom } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
 import DevInfo from "../pages/components/DevInfo";
 import Skill from "../pages/components/Skill";
 import avatat from "../assets/images/prof2.jpg";
@@ -21,12 +24,35 @@ import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
 
 const About = () => {
+  const scrollRef = useRef(null);
+  const [showScroll, setShowScroll] = useState(false);
+
   const [html, setHtml] = useState(0);
   const [css, setCss] = useState(0);
   const [git, setGit] = useState(0);
   const [react, setReact] = useState(0);
   const [node, setNode] = useState(0);
   const [js, setJs] = useState(0);
+
+  useEffect(() => {
+  const el = scrollRef.current;
+  if (!el) return;
+
+  const onScroll = () => {
+    setShowScroll(el.scrollTop > 1);
+  };
+
+  el.addEventListener("scroll", onScroll);
+  
+  return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
+}, []);
+
+  const scrollToTop = () => {
+    scrollRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -69,6 +95,7 @@ const About = () => {
         <title>وب سایت محمد جواد ذاکریان | درباره من</title>
       </Helmet>
       <Card
+        ref={scrollRef}
         sx={{
           height: "100vh",
           backgroundColor: "whitesmoke",
@@ -134,7 +161,11 @@ const About = () => {
                 >
                   {devWorkInfo.map((item, index) => (
                     <Box key={index} sx={{ width: 1, mb: 2 }}>
-                      <Tooltip title={item.tooltipTitle} placement="right" arrow>
+                      <Tooltip
+                        title={item.tooltipTitle}
+                        placement="right"
+                        arrow
+                      >
                         <Chip
                           icon={item.icon}
                           label={
@@ -240,6 +271,21 @@ const About = () => {
           </Grid>
         </CardContent>
       </Card>
+      <Zoom in={showScroll}>
+        <Fab
+          color="primary"
+          size="small"
+          onClick={scrollToTop}
+          sx={{
+            position: "fixed",
+            bottom: 24,
+            right: 24,
+            zIndex: 1000,
+          }}
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
     </>
   );
 };
