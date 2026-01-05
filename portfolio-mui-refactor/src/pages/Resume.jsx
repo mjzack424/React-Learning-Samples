@@ -9,41 +9,59 @@ import {
   Grid,
   Box,
   Tooltip,
+  Fab,
+  Zoom,
+  Slide,
 } from "@mui/material";
-import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
-import CountUp from "react-countup";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineDot,
+  TimelineContent,
+  TimelineConnector,
+} from "@mui/lab";
 
-import { Fab, Zoom } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
+import {
+  KeyboardArrowUp,
+  Badge,
+  HomeRepairServiceRounded,
+  SchoolRounded,
+} from "@mui/icons-material";
 
 import { devEdu } from "../constants/details";
 
-const Resume = ({helmetTitle}) =>{
-
-    const scrollRef = useRef(null);
+const Resume = ({ helmetTitle }) => {
+  const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
 
-  const [html, setHtml] = useState(0);
-  const [css, setCss] = useState(0);
-  const [git, setGit] = useState(0);
-  const [react, setReact] = useState(0);
-  const [node, setNode] = useState(0);
-  const [js, setJs] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-  const el = scrollRef.current;
-  if (!el) return;
+    // برای اینکه انیمیشن کامل اجرا بشه
+    const timer = setTimeout(() => {
+      setLoading(true);
+    }, 10);
 
-  const onScroll = () => {
-    setShowScroll(el.scrollTop > 1);
-  };
+    return () => {
+      clearTimeout(timer);
+      setLoading(false);
+    };
+  }, []);
 
-  el.addEventListener("scroll", onScroll);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
 
-  return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
-}, []);
+    const onScroll = () => {
+      setShowScroll(el.scrollTop > 1);
+    };
+
+    el.addEventListener("scroll", onScroll);
+
+    return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
+  }, []);
 
   const scrollToTop = () => {
     scrollRef.current.scrollTo({
@@ -52,11 +70,10 @@ const Resume = ({helmetTitle}) =>{
     });
   };
 
-    return(<>
+  return (
+    <>
       <Helmet>
-        <title>
-            {helmetTitle}
-        </title>
+        <title>{helmetTitle}</title>
       </Helmet>
       <Card
         ref={scrollRef}
@@ -68,8 +85,219 @@ const Resume = ({helmetTitle}) =>{
       >
         <CardContent>
           <Grid container sx={{ ms: 3 }} direction="row-reverse">
-        </Grid>
-            
+            <Grid
+              sx={{
+                width: 1,
+                mt: 1,
+                mb: 3,
+                // display: "flex",
+                // justifyContent: "flex-start",
+                justifyContent: "center",
+              }}
+            >
+              <Slide
+                direction="down"
+                in={loading}
+                style={{ transitionDelay: loading ? "100ms" : "0ms" }}
+              >
+                <Divider
+                  textAlign="center"
+                  sx={{
+                    "& .MuiDivider-wrapper": {
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                    },
+                    width: 1,
+                    "&::before, &::after": {
+                      borderColor: "secondary.main",
+                      borderWidth: 2,
+                    },
+                  }}
+                >
+                  <Chip
+                    color="secondary"
+                    icon={<Badge />}
+                    label={
+                      <Typography
+                        variant="body1"
+                        color="black"
+                        sx={{ textAlign: "center" }}
+                      >
+                        رزومه من
+                      </Typography>
+                    }
+                    sx={{ p: 3 }}
+                  ></Chip>
+                </Divider>
+              </Slide>
+            </Grid>
+            <Grid
+              size={6}
+              display={"flex"}
+              sx={{
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+              // sx={{backgroundColor:"ActiveCaption"}}
+            >
+              <Slide
+                direction="down"
+                in={loading}
+                style={{ transitionDelay: loading ? "400ms" : "0ms" }}
+              >
+                <Divider
+                  textAlign="left"
+                  sx={{
+                    "& .MuiDivider-wrapper": {
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                    },
+                    width: 1,
+                    "&::before, &::after": {
+                      borderColor: "primary.main",
+                      borderWidth: 2,
+                    },
+                  }}
+                >
+                  <Chip
+                    color="success"
+                    icon={<HomeRepairServiceRounded />}
+                    label={
+                      <Typography
+                        variant="body1"
+                        color="black"
+                        sx={{ textAlign: "center" }}
+                      >
+                        تجربیات
+                      </Typography>
+                    }
+                    sx={{ p: 3 }}
+                  ></Chip>
+                </Divider>
+              </Slide>
+
+              <Timeline>
+                {devEdu.map((item, index) => (
+                  <Slide
+                    direction="up"
+                    in={loading}
+                    style={{
+                      transitionDelay: loading ? `${index + 5}99ms` : "0ms",
+                    }}
+                  >
+                    <TimelineItem key={index}>
+                      <TimelineSeparator>
+                        <TimelineDot variant="outlined" color="warning">
+                          <HomeRepairServiceRounded color="warning" />
+                        </TimelineDot>
+                        {index != devEdu.length - 1 ? (
+                          <TimelineConnector />
+                        ) : null}
+                      </TimelineSeparator>
+                      <TimelineContent>
+                        <Typography variant="caption" color="gray">
+                          {item.year}
+                        </Typography>
+                        <Typography variant="body1" color="black">
+                          {item.cert}
+                        </Typography>
+                        <Typography variant="body2" color="black">
+                          {item.major}
+                        </Typography>
+                        <Typography variant="body2" color="black">
+                          {item.place}
+                        </Typography>
+                      </TimelineContent>
+                    </TimelineItem>
+                  </Slide>
+                ))}
+              </Timeline>
+            </Grid>
+            <Grid
+              size={6}
+              display={"flex"}
+              sx={{
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+              // sx={{backgroundColor:"ActiveCaption"}}
+            >
+              <Slide
+                direction="down"
+                in={loading}
+                style={{ transitionDelay: loading ? "400ms" : "0ms" }}
+              >
+                <Divider
+                  textAlign="left"
+                  sx={{
+                    "& .MuiDivider-wrapper": {
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                    },
+                    width: 1,
+                    "&::before, &::after": {
+                      borderColor: "primary.main",
+                      borderWidth: 2,
+                    },
+                  }}
+                >
+                  <Chip
+                    color="primary"
+                    icon={<SchoolRounded />}
+                    label={
+                      <Typography
+                        variant="body1"
+                        color="black"
+                        sx={{ textAlign: "center" }}
+                      >
+                        تحصیلات
+                      </Typography>
+                    }
+                    sx={{ p: 3 }}
+                  ></Chip>
+                </Divider>
+              </Slide>
+
+              <Timeline>
+                {devEdu.map((item, index) => (
+                  <Slide
+                    direction="up"
+                    in={loading}
+                    style={{
+                      transitionDelay: loading ? `${index + 10}99ms` : "0ms",
+                    }}
+                  >
+                    <TimelineItem key={index}>
+                      <TimelineSeparator>
+                        <TimelineDot variant="outlined" color="info">
+                          <SchoolRounded color="info" />
+                        </TimelineDot>
+                        {index != devEdu.length - 1 ? (
+                          <TimelineConnector />
+                        ) : null}
+                      </TimelineSeparator>
+                      <TimelineContent>
+                        <Typography variant="caption" color="gray">
+                          {item.year}
+                        </Typography>
+                        <Typography variant="body1" color="black"> 
+                          {item.cert}
+                        </Typography>
+                        <Typography variant="body2" color="black">
+                          {item.major}
+                        </Typography>
+                        <Typography variant="body2" color="black">
+                          {item.place}
+                        </Typography>
+                      </TimelineContent>
+                    </TimelineItem>
+                  </Slide>
+                ))}
+              </Timeline>
+            </Grid>
+          </Grid>
         </CardContent>
       </Card>
       <Zoom in={showScroll}>
@@ -84,10 +312,11 @@ const Resume = ({helmetTitle}) =>{
             zIndex: 1000,
           }}
         >
-          <KeyboardArrowUpIcon />
+          <KeyboardArrowUp />
         </Fab>
       </Zoom>
-    </>)
-}
+    </>
+  );
+};
 
 export default Resume;
