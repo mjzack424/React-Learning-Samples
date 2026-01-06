@@ -26,6 +26,7 @@ import {
 } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
 import { useFormik } from "formik";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { map } from "../assets/icons";
 import { contactValidationSchema } from "./validations/contactValidation";
@@ -33,8 +34,8 @@ import { contactValidationSchema } from "./validations/contactValidation";
 const Contact = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
-
   const [loading, setLoading] = useState(false);
+  const siteKey = "6LdL6EEsAAAAAEBG3QOG8TEZUeYvIHmGmS5ZUIpm";
 
   useEffect(() => {
     // برای اینکه انیمیشن کامل اجرا بشه
@@ -75,6 +76,7 @@ const Contact = ({ helmetTitle }) => {
     email: "",
     subject: "",
     message: "",
+    recaptcha: "",
   };
   const formike = useFormik({
     initialValues: contactInputNames,
@@ -357,6 +359,20 @@ const Contact = ({ helmetTitle }) => {
                     <CardActions
                       sx={{ alignItems: "start", flexDirection: "column" }}
                     >
+                      <ReCAPTCHA
+                        sitekey={siteKey}
+                        theme={theme.palette.mode}
+                        hl="fa"
+                        onChange={(value) => {
+                          formike.setFieldValue("recaptcha", value);
+                        }}
+                      />
+                      {formike.errors.recaptcha &&
+                        formike.touched.recaptcha && (
+                          <Typography variant="caption" color="error">
+                            {formike.errors.recaptcha}
+                          </Typography>
+                        )}
                       <Button
                         type="submit"
                         color="success"
