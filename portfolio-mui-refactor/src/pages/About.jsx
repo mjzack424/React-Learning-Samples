@@ -11,6 +11,7 @@ import {
   Tooltip,
   Fab,
   Zoom,
+  useTheme,
 } from "@mui/material";
 import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
@@ -23,6 +24,7 @@ import Skill from "../pages/components/Skill";
 import avatat from "../assets/images/prof2.jpg";
 import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
+import { grey } from "@mui/material/colors";
 
 const About = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -90,6 +92,7 @@ const About = ({ helmetTitle }) => {
   }, []);
   const { htmlSkill, cssSkill, gitSkill, reactSkill, nodeSkill, jsSkill } =
     devSkills;
+  const theme = useTheme();
   return (
     <>
       <Helmet>
@@ -99,7 +102,8 @@ const About = ({ helmetTitle }) => {
         ref={scrollRef}
         sx={{
           height: "100vh",
-          backgroundColor: "whitesmoke",
+          backgroundColor:
+            theme.palette.mode === "dark" ? grey[800] : "whitesmoke",
           overflowY: "auto",
         }}
       >

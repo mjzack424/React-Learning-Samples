@@ -23,7 +23,7 @@ function AppContainers() {
 
   useEffect(() => {
     setMode(prefersDarkMode ? "dark" : "light");
-  }, []);
+  }, [prefersDarkMode]);
 
   useEffect(() => {
     if (isSmUp) {

@@ -12,6 +12,7 @@ import {
   Zoom,
   Slide,
   Box,
+  useTheme,
 } from "@mui/material";
 
 import { KeyboardArrowUp, ForumRounded } from "@mui/icons-material";
@@ -19,6 +20,7 @@ import { KeyboardArrowUp, ForumRounded } from "@mui/icons-material";
 import Slider from "react-slick";
 
 import { userComments } from "../constants/details";
+import { grey } from "@mui/material/colors";
 
 const Comments = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -69,7 +71,7 @@ const Comments = ({ helmetTitle }) => {
       behavior: "smooth",
     });
   };
-
+  const theme = useTheme();
   return (
     <>
       <Helmet>
@@ -79,7 +81,7 @@ const Comments = ({ helmetTitle }) => {
         ref={scrollRef}
         sx={{
           height: "100vh",
-          backgroundColor: "whitesmoke",
+          backgroundColor: theme.palette.mode === "dark" ? grey[800] : "whitesmoke",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",

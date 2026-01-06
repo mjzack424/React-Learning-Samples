@@ -15,10 +15,10 @@ const SidebarFooter = () => {
           height: 100,
         }}
       >
-        <Typography variant="subtitle2" color="whitesmoke">
+        <Typography variant="subtitle2" color="text.primary">
           طراحی شده توسط محمد جواد ذاکریان
         </Typography>
-        <Typography variant="caption" color="whitesmoke">
+        <Typography variant="caption" color="text.primary">
           کپی رایت 1404
           <CopyrightRounded sx={{ verticalAlign: "middle", mx: 2 }} />
         </Typography>
@@ -26,5 +26,4 @@ const SidebarFooter = () => {
     </>
   );
 };
-
 export default SidebarFooter;

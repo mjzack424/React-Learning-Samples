@@ -9,6 +9,7 @@ import {
   Fab,
   Zoom,
   Slide,
+  useTheme,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import {
@@ -28,6 +29,7 @@ import {
 } from "@mui/icons-material";
 
 import { devEdu } from "../constants/details";
+import { grey } from "@mui/material/colors";
 
 const Resume = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -66,7 +68,7 @@ const Resume = ({ helmetTitle }) => {
       behavior: "smooth",
     });
   };
-
+  const theme = useTheme();
   return (
     <>
       <Helmet>
@@ -76,7 +78,8 @@ const Resume = ({ helmetTitle }) => {
         ref={scrollRef}
         sx={{
           height: "100vh",
-          backgroundColor: "whitesmoke",
+          backgroundColor:
+            theme.palette.mode === "dark" ? grey[800] : "whitesmoke",
           overflowY: "auto",
         }}
       >

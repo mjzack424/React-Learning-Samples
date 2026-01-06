@@ -13,12 +13,14 @@ import {
   Fab,
   Zoom,
   Slide,
+  useTheme,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
 import { KeyboardArrowUp, Badge } from "@mui/icons-material";
 
 import { Projects as myProjects } from "../constants/projects";
+import { grey } from "@mui/material/colors";
 
 const Projects = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -56,7 +58,7 @@ const Projects = ({ helmetTitle }) => {
       behavior: "smooth",
     });
   };
-
+  const theme = useTheme();
   return (
     <>
       <Helmet>
@@ -66,7 +68,8 @@ const Projects = ({ helmetTitle }) => {
         ref={scrollRef}
         sx={{
           height: "100vh",
-          backgroundColor: "whitesmoke",
+          backgroundColor:
+            theme.palette.mode === "dark" ? grey[800] : "whitesmoke",
           overflowY: "auto",
         }}
       >

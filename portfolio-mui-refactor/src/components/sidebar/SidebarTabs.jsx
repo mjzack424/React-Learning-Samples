@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Tab, Tabs } from "@mui/material";
+import { Tab, Tabs, useTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 import MainContext from "../../context";
@@ -9,7 +9,7 @@ const SidebarTabs = () => {
   const { pageNumber, handlePageNumber, setDrawerOpen } =
     useContext(MainContext);
   const data = tabsData();
-
+  const theme = useTheme();
   return (
     <Tabs
       orientation="vertical"
@@ -33,7 +33,10 @@ const SidebarTabs = () => {
           {...Tab}
           sx={{
             m: 1,
-            backgroundColor: grey[800],
+            backgroundColor:
+              theme.palette.mode === "dark" ? grey[800] : grey[500],
+            color: "text.primary",
+
             borderRadius: 2,
             width: "100%", // عرض کامل
             // minWidth: "100%", // حداقل عرض کامل
