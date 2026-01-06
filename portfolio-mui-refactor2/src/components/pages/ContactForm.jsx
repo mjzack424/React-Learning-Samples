@@ -17,7 +17,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import { contactValidationSchema } from "../../validations/contactValidation";
 
-const ContactForm = ({theme}) => {
+const ContactForm = ({ theme }) => {
   const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY; //process is global object on node
   const contactInputNames = {
     fullname: "",

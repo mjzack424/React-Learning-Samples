@@ -11,10 +11,7 @@ import {
   Box,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
-import {
-  KeyboardArrowUp,
-  AccountCircle,
-} from "@mui/icons-material";
+import { KeyboardArrowUp, AccountCircle } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
 
 import { map } from "../assets/icons";
@@ -60,8 +57,6 @@ const Contact = ({ helmetTitle }) => {
 
   const theme = useTheme();
 
- 
-  
   return (
     <>
       <Helmet>
@@ -191,7 +186,7 @@ const Contact = ({ helmetTitle }) => {
                     flexDirection: "column",
                   }}
                 >
-                  <ContactForm theme={theme}/>
+                  <ContactForm theme={theme} />
                 </Card>
               </Slide>
             </Grid>
