@@ -6,3 +6,4 @@ export { default as SocialMediaInfo } from "./SocialMediaInfo";
 export { default as DevWorkCount } from "./DevWorkCount";
 export { default as DevEduTimeline } from "./DevEduTimeline";
 export { default as DevEperienceTimeline } from "./DevEperienceTimeline";
+export { default as MyProjects } from "./MyProjects";
