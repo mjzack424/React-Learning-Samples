@@ -7,3 +7,4 @@ export { default as DevWorkCount } from "./DevWorkCount";
 export { default as DevEduTimeline } from "./DevEduTimeline";
 export { default as DevEperienceTimeline } from "./DevEperienceTimeline";
 export { default as MyProjects } from "./MyProjects";
+export { default as CommentsSlider } from "./CommentsSlider";
