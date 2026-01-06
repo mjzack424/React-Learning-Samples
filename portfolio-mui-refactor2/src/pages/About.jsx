@@ -19,8 +19,8 @@ import CountUp from "react-countup";
 
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import DevInfo from "../pages/components/DevInfo";
-import Skill from "../pages/components/Skill";
+import DevInfo from "../components/pages/DevInfo";
+import Skill from "../components/pages/Skill";
 import avatat from "../assets/images/prof2.jpg";
 import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
