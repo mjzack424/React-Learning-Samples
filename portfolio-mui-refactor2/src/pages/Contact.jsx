@@ -3,39 +3,28 @@ import {
   Typography,
   Card,
   CardContent,
-  Divider,
-  Chip,
   Grid,
   Fab,
   Zoom,
   Slide,
   useTheme,
-  TextField,
-  InputAdornment,
-  CardActions,
-  Button,
   Box,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import {
   KeyboardArrowUp,
-  Face6Rounded,
-  SubjectRounded,
-  EmailRounded,
   AccountCircle,
 } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
-import { useFormik } from "formik";
-import ReCAPTCHA from "react-google-recaptcha";
 
 import { map } from "../assets/icons";
-import { contactValidationSchema } from "../validations/contactValidation";
+import { CustomDivider } from "../components/common";
+import { ContactForm } from "../components/pages";
 
 const Contact = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
   const [loading, setLoading] = useState(false);
-  const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY; //process is global object on node
 
   useEffect(() => {
     // برای اینکه انیمیشن کامل اجرا بشه
@@ -71,20 +60,8 @@ const Contact = ({ helmetTitle }) => {
 
   const theme = useTheme();
 
-  const contactInputNames = {
-    fullname: "",
-    email: "",
-    subject: "",
-    message: "",
-    recaptcha: "",
-  };
-  const formike = useFormik({
-    initialValues: contactInputNames,
-    onSubmit: (values) => {
-      console.log("Form Values:", values);
-    },
-    validationSchema: contactValidationSchema,
-  });
+ 
+  
   return (
     <>
       <Helmet>
@@ -111,41 +88,14 @@ const Contact = ({ helmetTitle }) => {
                 justifyContent: "center",
               }}
             >
-              <Slide
-                direction="down"
-                in={loading}
-                sx={{ transitionDelay: loading ? "100ms" : "0ms" }}
-              >
-                <Divider
-                  textAlign="center"
-                  sx={{
-                    "& .MuiDivider-wrapper": {
-                      paddingLeft: 0,
-                      paddingRight: 0,
-                    },
-                    width: 1,
-                    "&::before, &::after": {
-                      borderColor: "warning.main",
-                      borderWidth: 2,
-                    },
-                  }}
-                >
-                  <Chip
-                    color="warning"
-                    icon={<AccountCircle />}
-                    label={
-                      <Typography
-                        variant="body1"
-                        color="black"
-                        sx={{ textAlign: "center" }}
-                      >
-                        ارتباط با من
-                      </Typography>
-                    }
-                    sx={{ p: 3 }}
-                  ></Chip>
-                </Divider>
-              </Slide>
+              <CustomDivider
+                bColor={"warning.main"}
+                cColor={"warning"}
+                icon={<AccountCircle />}
+                text={"ارتباط با من"}
+                delay="100ms"
+                textAlign="center"
+              />
             </Grid>
           </Grid>
           <Grid container sx={{ width: 1 }}>
@@ -241,149 +191,7 @@ const Contact = ({ helmetTitle }) => {
                     flexDirection: "column",
                   }}
                 >
-                  <form autoComplete="off" onSubmit={formike.handleSubmit}>
-                    <CardContent>
-                      <Grid container>
-                        <Grid width={1} size={12}>
-                          <Grid container spacing={2}>
-                            <Grid size={{ xs: 12, md: 6 }}>
-                              <TextField
-                                fullWidth
-                                size="small"
-                                color="warning"
-                                label="نام و نام خانوادیگی"
-                                name="fullname"
-                                variant="outlined"
-                                helperText={
-                                  formike.touched.fullname
-                                    ? formike.errors.fullname
-                                    : null
-                                }
-                                error={Boolean(
-                                  formike.touched.fullname &&
-                                    formike.errors.fullname
-                                )}
-                                value={formike.values?.fullname}
-                                onChange={formike.handleChange}
-                                InputProps={{
-                                  endAdornment: (
-                                    <InputAdornment position="end">
-                                      <Face6Rounded />
-                                    </InputAdornment>
-                                  ),
-                                }}
-                              />
-                            </Grid>
-                            <Grid size={{ xs: 12, md: 6 }}>
-                              <TextField
-                                fullWidth
-                                size="small"
-                                color="warning"
-                                label="پست الکترونیک"
-                                name="email"
-                                variant="outlined"
-                                helperText={
-                                  formike.touched.email
-                                    ? formike.errors.email
-                                    : null
-                                }
-                                error={Boolean(
-                                  formike.touched.email && formike.errors.email
-                                )}
-                                value={formike.values?.email}
-                                onChange={formike.handleChange}
-                                InputProps={{
-                                  endAdornment: (
-                                    <InputAdornment position="end">
-                                      <EmailRounded />
-                                    </InputAdornment>
-                                  ),
-                                }}
-                              />
-                            </Grid>
-                            <Grid size={12}>
-                              <TextField
-                                fullWidth
-                                size="small"
-                                color="warning"
-                                label="عنوان"
-                                name="subject"
-                                variant="outlined"
-                                helperText={
-                                  formike.touched.subject
-                                    ? formike.errors.subject
-                                    : null
-                                }
-                                error={Boolean(
-                                  formike.touched.subject &&
-                                    formike.errors.subject
-                                )}
-                                value={formike.values?.subject}
-                                onChange={formike.handleChange}
-                                InputProps={{
-                                  endAdornment: (
-                                    <InputAdornment position="end">
-                                      <SubjectRounded />
-                                    </InputAdornment>
-                                  ),
-                                }}
-                              />
-                            </Grid>
-                            <Grid size={12}>
-                              <TextField
-                                fullWidth
-                                size="small"
-                                color="warning"
-                                label="پیام"
-                                name="message"
-                                variant="outlined"
-                                multiline
-                                rows={6}
-                                helperText={
-                                  formike.touched.message
-                                    ? formike.errors.message
-                                    : null
-                                }
-                                error={Boolean(
-                                  formike.touched.message &&
-                                    formike.errors.message
-                                )}
-                                value={formike.values?.message}
-                                onChange={formike.handleChange}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </CardContent>
-                    <CardActions
-                      sx={{ alignItems: "start", flexDirection: "column" }}
-                    >
-                      <ReCAPTCHA
-                        sitekey={siteKey}
-                        theme={theme.palette.mode}
-                        hl="fa"
-                        onChange={(value) => {
-                          formike.setFieldValue("recaptcha", value);
-                        }}
-                      />
-                      {formike.errors.recaptcha &&
-                        formike.touched.recaptcha && (
-                          <Typography variant="caption" color="error">
-                            {formike.errors.recaptcha}
-                          </Typography>
-                        )}
-                      <Button
-                        type="submit"
-                        color="success"
-                        variant="contained"
-                        fullWidth
-                        sx={{ mt: 2 }}
-                      >
-                        ارسال پیام
-                      </Button>
-                    </CardActions>
-                  </form>
+                  <ContactForm theme={theme}/>
                 </Card>
               </Slide>
             </Grid>
