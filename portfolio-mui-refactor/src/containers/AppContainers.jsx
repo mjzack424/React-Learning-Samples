@@ -19,9 +19,10 @@ function AppContainers() {
 
   const theme = useTheme();
   const isSmUp = useMediaQuery(theme.breakpoints.up("md"));
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark");
 
   useEffect(() => {
-    setMode("dark");
+    setMode(prefersDarkMode ? "dark" : "light");
   }, []);
 
   useEffect(() => {
