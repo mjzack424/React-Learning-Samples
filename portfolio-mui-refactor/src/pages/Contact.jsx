@@ -19,15 +19,16 @@ import {
 import { Helmet } from "react-helmet-async";
 import {
   KeyboardArrowUp,
-  Badge,
   Face6Rounded,
   SubjectRounded,
   EmailRounded,
   AccountCircle,
 } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
+import { useFormik } from "formik";
 
 import { map } from "../assets/icons";
+import { contactValidationSchema } from "./validations/contactValidation";
 
 const Contact = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -66,7 +67,22 @@ const Contact = ({ helmetTitle }) => {
       behavior: "smooth",
     });
   };
+
   const theme = useTheme();
+
+  const contactInputNames = {
+    fullname: "",
+    email: "",
+    subject: "",
+    message: "",
+  };
+  const formike = useFormik({
+    initialValues: contactInputNames,
+    onSubmit: (values) => {
+      console.log("Form Values:", values);
+    },
+    validationSchema: contactValidationSchema,
+  });
   return (
     <>
       <Helmet>
@@ -223,7 +239,7 @@ const Contact = ({ helmetTitle }) => {
                     flexDirection: "column",
                   }}
                 >
-                  <form autoComplete="off">
+                  <form autoComplete="off" onSubmit={formike.handleSubmit}>
                     <CardContent>
                       <Grid container>
                         <Grid width={1} size={12}>
@@ -236,6 +252,17 @@ const Contact = ({ helmetTitle }) => {
                                 label="نام و نام خانوادیگی"
                                 name="fullname"
                                 variant="outlined"
+                                helperText={
+                                  formike.touched.fullname
+                                    ? formike.errors.fullname
+                                    : null
+                                }
+                                error={Boolean(
+                                  formike.touched.fullname &&
+                                    formike.errors.fullname
+                                )}
+                                value={formike.values?.fullname}
+                                onChange={formike.handleChange}
                                 InputProps={{
                                   endAdornment: (
                                     <InputAdornment position="end">
@@ -253,6 +280,16 @@ const Contact = ({ helmetTitle }) => {
                                 label="پست الکترونیک"
                                 name="email"
                                 variant="outlined"
+                                helperText={
+                                  formike.touched.email
+                                    ? formike.errors.email
+                                    : null
+                                }
+                                error={Boolean(
+                                  formike.touched.email && formike.errors.email
+                                )}
+                                value={formike.values?.email}
+                                onChange={formike.handleChange}
                                 InputProps={{
                                   endAdornment: (
                                     <InputAdornment position="end">
@@ -270,6 +307,17 @@ const Contact = ({ helmetTitle }) => {
                                 label="عنوان"
                                 name="subject"
                                 variant="outlined"
+                                helperText={
+                                  formike.touched.subject
+                                    ? formike.errors.subject
+                                    : null
+                                }
+                                error={Boolean(
+                                  formike.touched.subject &&
+                                    formike.errors.subject
+                                )}
+                                value={formike.values?.subject}
+                                onChange={formike.handleChange}
                                 InputProps={{
                                   endAdornment: (
                                     <InputAdornment position="end">
@@ -289,6 +337,17 @@ const Contact = ({ helmetTitle }) => {
                                 variant="outlined"
                                 multiline
                                 rows={6}
+                                helperText={
+                                  formike.touched.message
+                                    ? formike.errors.message
+                                    : null
+                                }
+                                error={Boolean(
+                                  formike.touched.message &&
+                                    formike.errors.message
+                                )}
+                                value={formike.values?.message}
+                                onChange={formike.handleChange}
                               />
                             </Grid>
                           </Grid>
