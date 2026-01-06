@@ -5,7 +5,7 @@ const DevInfo = ({ children }) => {
     <>
       <Typography
         variant="body1"
-        color="black"
+        color="text.primary"
         textAlign={"left"}
         sx={{ mt: 2 }}
       >
