@@ -16,15 +16,13 @@ import {
 import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
 import CountUp from "react-countup";
-
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { grey } from "@mui/material/colors";
 
-import DevInfo from "../components/pages/DevInfo";
-import Skill from "../components/pages/Skill";
+import { Skill, DevInfo } from "../components/pages";
 import avatat from "../assets/images/prof2.jpg";
 import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
-import { grey } from "@mui/material/colors";
 
 const About = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
@@ -117,7 +115,6 @@ const About = ({ helmetTitle }) => {
                 justifyContent: "flex-start",
                 alignItems: "flex-start",
               }}
-              // sx={{backgroundColor:"ActiveCaption"}}
             >
               <Divider
                 textAlign="left"
@@ -204,8 +201,6 @@ const About = ({ helmetTitle }) => {
               sx={{
                 width: 1,
                 mt: 1,
-                // display: "flex",
-                // justifyContent: "flex-start",
                 justifyContent: "center",
               }}
             >

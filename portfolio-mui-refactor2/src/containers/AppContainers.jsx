@@ -5,7 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Sidebar } from "../components/sidebar/index";
 import PagesContainer from "./PagesContainer";
 import MainLayout from "../layout/MainLayout";
-import Page from "../components/pages/Page";
+import { Page } from "../components/pages";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 

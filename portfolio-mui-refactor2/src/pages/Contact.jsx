@@ -29,7 +29,7 @@ import { useFormik } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { map } from "../assets/icons";
-import { contactValidationSchema } from "./validations/contactValidation";
+import { contactValidationSchema } from "../validations/contactValidation";
 
 const Contact = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
