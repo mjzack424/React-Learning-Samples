@@ -20,8 +20,6 @@ import { Helmet } from "react-helmet-async";
 import {
   KeyboardArrowUp,
   Badge,
-  HomeRepairServiceRounded,
-  SchoolRounded,
   Face6Rounded,
   SubjectRounded,
   EmailRounded,

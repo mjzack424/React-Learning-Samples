@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
-
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -10,6 +8,7 @@ import MainLayout from "../layout/MainLayout";
 import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
+
 import { Home, About, Resume, Projects, Comments, Contact } from "../pages";
 
 function AppContainers() {
