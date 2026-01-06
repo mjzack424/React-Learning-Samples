@@ -3,7 +3,6 @@ import {
   Typography,
   Card,
   CardContent,
-  Divider,
   Chip,
   Avatar,
   Grid,
@@ -19,21 +18,14 @@ import CountUp from "react-countup";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { grey } from "@mui/material/colors";
 
-import { Skill, DevInfo } from "../components/pages";
+import { DevInfo, Skills } from "../components/pages";
 import avatat from "../assets/images/prof2.jpg";
-import { devSkills } from "../constants/skills";
 import { devWorkInfo } from "../constants/details";
+import { CustomDivider } from "../components/common";
 
 const About = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
-
-  const [html, setHtml] = useState(0);
-  const [css, setCss] = useState(0);
-  const [git, setGit] = useState(0);
-  const [react, setReact] = useState(0);
-  const [node, setNode] = useState(0);
-  const [js, setJs] = useState(0);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -54,42 +46,6 @@ const About = ({ helmetTitle }) => {
       behavior: "smooth",
     });
   };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setJs((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 80);
-      });
-      setHtml((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 90);
-      });
-      setCss((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 70);
-      });
-      setGit((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 50);
-      });
-      setReact((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 70);
-      });
-      setNode((oldProgress) => {
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 40);
-      });
-    }, 100);
-
-    // for Unmounmt
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-  const { htmlSkill, cssSkill, gitSkill, reactSkill, nodeSkill, jsSkill } =
-    devSkills;
   const theme = useTheme();
   return (
     <>
@@ -116,32 +72,12 @@ const About = ({ helmetTitle }) => {
                 alignItems: "flex-start",
               }}
             >
-              <Divider
-                textAlign="left"
-                sx={{
-                  "& .MuiDivider-wrapper": { paddingLeft: 0, paddingRight: 0 },
-                  width: 1,
-                  "&::before, &::after": {
-                    borderColor: "primary.main",
-                    borderWidth: 2,
-                  },
-                }}
-              >
-                <Chip
-                  color="primary"
-                  icon={<CodeRounded />}
-                  label={
-                    <Typography
-                      variant="body1"
-                      color="black"
-                      sx={{ textAlign: "center" }}
-                    >
-                      توسعه فرانت اند و مدرس برنامه نویسی
-                    </Typography>
-                  }
-                  sx={{ p: 3 }}
-                ></Chip>
-              </Divider>
+              <CustomDivider
+                bColor={"primary.main"}
+                cColor={"primary"}
+                icon={<CodeRounded />}
+                text={"توسعه فرانت اند و مدرس برنامه نویسی"}
+              />
               <Grid
                 container
                 sx={{
@@ -204,68 +140,14 @@ const About = ({ helmetTitle }) => {
                 justifyContent: "center",
               }}
             >
-              <Divider
+              <CustomDivider
+                bColor={"secondary.main"}
+                cColor={"secondary"}
+                icon={<SelfImprovementRounded />}
+                text={"مهارت های من"}
                 textAlign="center"
-                sx={{
-                  "& .MuiDivider-wrapper": { paddingLeft: 0, paddingRight: 0 },
-                  width: 1,
-                  "&::before, &::after": {
-                    borderColor: "secondary.main",
-                    borderWidth: 2,
-                  },
-                }}
-              >
-                <Chip
-                  color="secondary"
-                  icon={<SelfImprovementRounded />}
-                  label={
-                    <Typography
-                      variant="body1"
-                      color="black"
-                      sx={{ textAlign: "center" }}
-                    >
-                      مهارت های من
-                    </Typography>
-                  }
-                  sx={{ p: 3 }}
-                ></Chip>
-              </Divider>
-              <Skill
-                name={htmlSkill.name}
-                icon={htmlSkill.icon}
-                color={htmlSkill.color}
-                value={html}
               />
-              <Skill
-                name={cssSkill.name}
-                icon={cssSkill.icon}
-                color={cssSkill.color}
-                value={css}
-              />
-              <Skill
-                name={jsSkill.name}
-                icon={jsSkill.icon}
-                color={jsSkill.color}
-                value={js}
-              />
-              <Skill
-                name={reactSkill.name}
-                icon={reactSkill.icon}
-                color={reactSkill.color}
-                value={react}
-              />
-              <Skill
-                name={nodeSkill.name}
-                icon={nodeSkill.icon}
-                color={nodeSkill.color}
-                value={node}
-              />
-              <Skill
-                name={gitSkill.name}
-                icon={gitSkill.icon}
-                color={gitSkill.color}
-                value={git}
-              />
+              <Skills />
             </Grid>
           </Grid>
         </CardContent>
