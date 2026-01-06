@@ -132,7 +132,7 @@ const Contact = ({ helmetTitle }) => {
               </Slide>
             </Grid>
           </Grid>
-          <Grid container sx={{ width: 1, }} >
+          <Grid container sx={{ width: 1 }}>
             <Slide
               direction="up"
               in={loading}
@@ -160,7 +160,7 @@ const Contact = ({ helmetTitle }) => {
                     color="black"
                     sx={{
                       fontFamily: "vazir",
-                      mt: 4,  
+                      mt: 4,
                       display: {
                         // xs: "none",
                         // sm: "none",
@@ -201,9 +201,10 @@ const Contact = ({ helmetTitle }) => {
             <Grid
               size={{ xs: 12, md: 8 }}
               sx={{
-                display: { 
+                display: {
                   // xs: "none",
-                   md: "flex" },
+                  md: "flex",
+                },
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -211,21 +212,105 @@ const Contact = ({ helmetTitle }) => {
               <Slide
                 direction="up"
                 in={loading}
-                sx={{
+                style={{
                   transitionDelay: loading ? "200ms" : "0ms",
                 }}
               >
                 <Card
                   sx={{
-                    maxWidth: 345,
                     width: "100%",
-                    backgroundColor: "steelblue",
+                    // backgroundColor: "steelblue",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  wdawdawdas
+                  <form autoComplete="off">
+                    <CardContent>
+                      <Grid container>
+                        <Grid width={1} size={12}>
+                          <Grid container spacing={2}>
+                            <Grid size={{ xs: 12, md: 6 }}>
+                              <TextField
+                                fullWidth
+                                size="small"
+                                color="warning"
+                                label="نام و نام خانوادیگی"
+                                name="fullname"
+                                variant="outlined"
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      <Face6Rounded />
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Grid>
+                            <Grid size={{ xs: 12, md: 6 }}>
+                              <TextField
+                                fullWidth
+                                size="small"
+                                color="warning"
+                                label="پست الکترونیک"
+                                name="email"
+                                variant="outlined"
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      <EmailRounded />
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Grid>
+                            <Grid size={12}>
+                              <TextField
+                                fullWidth
+                                size="small"
+                                color="warning"
+                                label="عنوان"
+                                name="subject"
+                                variant="outlined"
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      <SubjectRounded />
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
+                            </Grid>
+                            <Grid size={12}>
+                              <TextField
+                                fullWidth
+                                size="small"
+                                color="warning"
+                                label="پیام"
+                                name="message"
+                                variant="outlined"
+                                multiline
+                                rows={6}
+                              />
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </CardContent>
+                    <CardActions
+                      sx={{ alignItems: "start", flexDirection: "column" }}
+                    >
+                      <Button
+                        type="submit"
+                        color="success"
+                        variant="contained"
+                        fullWidth
+                        sx={{ mt: 2 }}
+                      >
+                        ارسال پیام
+                      </Button>
+                    </CardActions>
+                  </form>
                 </Card>
               </Slide>
             </Grid>
