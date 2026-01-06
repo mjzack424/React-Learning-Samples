@@ -1,10 +1,8 @@
-import { Typography, Box, Divider } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Typography, Box } from "@mui/material";
 import { CopyrightRounded } from "@mui/icons-material";
 const SidebarFooter = () => {
   return (
     <>
-      <Divider variant="middle" color={grey[900]} sx={{ mt: 2 }} />
       <Box
         sx={{
           flexGrow: 1,

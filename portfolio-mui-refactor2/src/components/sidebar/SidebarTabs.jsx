@@ -39,7 +39,6 @@ const SidebarTabs = () => {
 
             borderRadius: 2,
             width: "100%", // عرض کامل
-            // minWidth: "100%", // حداقل عرض کامل
             "&.MuiTab-root": {
               minHeight: 50,
             },

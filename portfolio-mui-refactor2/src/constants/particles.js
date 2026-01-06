@@ -12,9 +12,7 @@ export const lifeSpan = {
       },
     },
     color: {
-    //   value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
-    value: "#ffffffbe",
-    
+      value: "#ffffffbe",
     },
     shape: {
       type: "circle",

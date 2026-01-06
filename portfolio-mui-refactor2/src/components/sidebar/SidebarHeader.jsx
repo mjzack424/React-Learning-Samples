@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Typography, Avatar, Box, IconButton, Link, Zoom } from "@mui/material";
+import { Typography, Avatar } from "@mui/material";
 import { RandomReveal } from "react-random-reveal";
-import { GitHub, Telegram, Instagram } from "@mui/icons-material";
 
 import { persianAlphabet } from "../../constants/persianAlphabet";
 import ThemeActionButton from "../ThemeActionButton";
+import { SocialMediaInfo } from "../pages";
 
 const SidebarHeader = ({ name, mysummary }) => {
   const [imageError, setImageError] = useState(false);
@@ -66,45 +66,7 @@ const SidebarHeader = ({ name, mysummary }) => {
         />
       </Typography>
       <Typography variant="caption">{mysummary}</Typography>
-      {/* <Divider sx={{ backgroundColor: grey[900], mt: 2 }} variant="middle" /> */}
-      <Box component={"div"} sx={{ m: "0 auto", textAlign: "center" }}>
-        <Zoom in={show}>
-          <IconButton aria-label="GitHub">
-            {/* // Method 2: Opening in a new tab/window */}
-            <Link
-              href="https://github.com/mjzack424"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHub sx={{ color: "gray" }} />
-            </Link>
-          </IconButton>
-        </Zoom>
-        <Zoom in={show}>
-          <IconButton aria-label="GitHub">
-            {/* // Method 2: Opening in a new tab/window */}
-            <Link
-              href="https://t.me/Make_3DAssets_Free"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Telegram sx={{ color: "gray" }} />
-            </Link>
-          </IconButton>
-        </Zoom>
-        <Zoom in={show}>
-          <IconButton aria-label="GitHub">
-            {/* // Method 2: Opening in a new tab/window */}
-            <Link
-              href="https://www.instagram.com/zack424_artworks/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram sx={{ color: "gray" }} />
-            </Link>
-          </IconButton>
-        </Zoom>
-      </Box>
+      <SocialMediaInfo show={show} />
     </>
   );
 };
