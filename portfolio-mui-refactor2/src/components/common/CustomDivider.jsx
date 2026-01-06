@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 
 import { Divider, Chip, Typography, Slide } from "@mui/material";
 
-const CustomDivider = ({ bColor, cColor, icon, text, textAlign="left" }) => {
+const CustomDivider = ({
+  bColor,
+  cColor,
+  icon,
+  text,
+  textAlign = "left",
+  delay = "200ms",
+}) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +26,7 @@ const CustomDivider = ({ bColor, cColor, icon, text, textAlign="left" }) => {
         direction="down"
         in={loading}
         style={{
-          transitionDelay: loading ? "200ms" : "0ms",
+          transitionDelay: loading ? delay : "0ms",
         }}
       >
         <Divider

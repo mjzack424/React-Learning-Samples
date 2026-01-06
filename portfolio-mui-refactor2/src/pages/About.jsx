@@ -20,7 +20,6 @@ import { CustomDivider } from "../components/common";
 const About = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
-
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -33,7 +32,6 @@ const About = ({ helmetTitle }) => {
 
     return () => el.removeEventListener("scroll", onScroll); //* this will run on unmout
   }, []);
-
   const scrollToTop = () => {
     scrollRef.current.scrollTo({
       top: 0,
