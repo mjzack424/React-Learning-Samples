@@ -35,7 +35,7 @@ const Contact = ({ helmetTitle }) => {
   const scrollRef = useRef(null);
   const [showScroll, setShowScroll] = useState(false);
   const [loading, setLoading] = useState(false);
-  const siteKey = "6LdL6EEsAAAAAEBG3QOG8TEZUeYvIHmGmS5ZUIpm";
+  const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY; //process is global object on node
 
   useEffect(() => {
     // برای اینکه انیمیشن کامل اجرا بشه
