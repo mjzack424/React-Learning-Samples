@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { KeyboardArrowLeftRounded } from "@mui/icons-material";
-const DevInfo = ({ children }) => {
+const Info = ({ children }) => {
   return (
     <>
       <Typography
@@ -18,4 +18,17 @@ const DevInfo = ({ children }) => {
     </>
   );
 };
+
+const DevInfo = () => {
+  return (
+    <>
+      <Info>نام و نام خانوادگی: محمد جواد ذاکریان</Info>
+      <Info>سن: 30</Info>
+      <Info>شهر: قم</Info>
+      <Info>پست الکترونیک: zack424@yahoo.com</Info>
+      <Info>شماره موبایل: 09387207944</Info>
+    </>
+  );
+};
+
 export default DevInfo;

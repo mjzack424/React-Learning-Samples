@@ -1,26 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Typography,
   Card,
   CardContent,
-  Chip,
   Avatar,
   Grid,
-  Box,
-  Tooltip,
   Fab,
   Zoom,
   useTheme,
 } from "@mui/material";
 import { SelfImprovementRounded, CodeRounded } from "@mui/icons-material";
 import { Helmet } from "react-helmet-async";
-import CountUp from "react-countup";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { grey } from "@mui/material/colors";
 
-import { DevInfo, Skills } from "../components/pages";
+import { DevInfo, Skills, DevWorkCount } from "../components/pages";
 import avatat from "../assets/images/prof2.jpg";
-import { devWorkInfo } from "../constants/details";
 import { CustomDivider } from "../components/common";
 
 const About = ({ helmetTitle }) => {
@@ -86,39 +80,13 @@ const About = ({ helmetTitle }) => {
                 }}
               >
                 <Grid size={{ xs: 12, md: 10 }}>
-                  <DevInfo>نام و نام خانوادگی: محمد جواد ذاکریان</DevInfo>
-                  <DevInfo>سن: 30</DevInfo>
-                  <DevInfo>شهر: قم</DevInfo>
-                  <DevInfo>پست الکترونیک: zack424@yahoo.com</DevInfo>
-                  <DevInfo>شماره موبایل: 09387207944</DevInfo>
+                  <DevInfo />
                 </Grid>
                 <Grid
                   size={{ xs: 4, md: 2 }}
                   display={{ xs: "none", md: "block" }}
                 >
-                  {devWorkInfo.map((item, index) => (
-                    <Box key={index} sx={{ width: 1, mb: 2 }}>
-                      <Tooltip
-                        title={item.tooltipTitle}
-                        placement="right"
-                        arrow
-                      >
-                        <Chip
-                          icon={item.icon}
-                          label={
-                            <Typography variant="body1" color="whitesmoke">
-                              <CountUp
-                                start={0}
-                                end={item.total}
-                                duration={2}
-                              />
-                            </Typography>
-                          }
-                          sx={{ p: 2, backgroundColor: item.color, width: 1 }}
-                        />
-                      </Tooltip>
-                    </Box>
-                  ))}
+                  <DevWorkCount />
                 </Grid>
               </Grid>
             </Grid>
