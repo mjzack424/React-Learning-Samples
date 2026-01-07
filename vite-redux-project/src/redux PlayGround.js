@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 const actionOne = { type: "counter/increment" };
 
 //Action Creators
-export const increment = (number) => {
+const increment = (number) => {
   return {
     type: "counter/increment",
     payload: number,
@@ -11,17 +11,19 @@ export const increment = (number) => {
 };
 
 //Reducers
+const reducerOne = (state, action) => {
+  return newState;
+};
+
 (state, action) => newState;
 
 const initialState = { value: 0 };
-
-
 
 const counterReducer = (state = initialState, action) => {
   if (action.type === "counter/increment") {
     const copyState = { ...state };
     return {
-      value: (copyState.value += action.payload),
+      value: (copyState.value += 1),
     };
   }
 
@@ -29,14 +31,18 @@ const counterReducer = (state = initialState, action) => {
 };
 
 //Store
-export const store = configureStore({ reducer: counterReducer });
-// store.getState();
+const store = configureStore({ reducer: counterReducer });
+store.getState();
 
 //Dispatch
-// store.dispatch({ type: "counter/increment" });
-// store.dispatch(increment());
+store.dispatch({ type: "counter/increment" });
+//or
+store.dispatch(increment());
 
 //Selectors
 const selectCounterValue = (state) => state.value;
-export const currentValue = selectCounterValue(store.getState());
+const currentValue = selectCounterValue(store.getState());
 console.log(currentValue);
+
+
+ForChange =>Dispatch>Reducer
