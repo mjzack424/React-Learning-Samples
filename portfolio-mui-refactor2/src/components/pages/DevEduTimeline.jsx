@@ -29,13 +29,14 @@ const DevEduTimeline = () => {
     <Timeline>
       {devEdu.map((item, index) => (
         <Slide
+          key={index}
           direction="up"
           in={loading}
           style={{
             transitionDelay: loading ? `${index + 5}99ms` : "0ms",
           }}
         >
-          <TimelineItem key={index}>
+          <TimelineItem>
             <TimelineSeparator>
               <TimelineDot variant="outlined" color="warning">
                 <HomeRepairServiceRounded color="warning" />
