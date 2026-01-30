@@ -1,9 +1,11 @@
-function App() {
+import BlogsList from "./components/BlogsList";
+
+const App = () => {
   return (
     <>
-      <h1>Home</h1>
+      <BlogsList />
     </>
   );
-}
+};
 
 export default App;
