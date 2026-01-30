@@ -19,9 +19,24 @@ const blogsSlice = createSlice({
   name: "blogs",
   initialState: initialState,
   reducers: {
-    blogAdded: (state, action) => {
-      state.push(action.payload);
+    blogAdded: {
+      reducer(state, action) {
+        state.push(action.payload);
+      },
+      prepare(title, content) {
+        //Complex logic can be here
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            content,
+          },
+        };
+      },
     },
+    // blogAdded: (state, action) => {
+    //   state.push(action.payload);
+    // },
   },
 });
 

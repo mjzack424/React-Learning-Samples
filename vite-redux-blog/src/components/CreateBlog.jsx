@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { blogAdded } from "../reducers/blogSlice";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +13,9 @@ const CreateBlog = () => {
   const onContentChange = (e) => setContent(e.target.value);
   const handleFromSumbit = () => {
     if (title && content) {
-      dispatch(blogAdded({ id: nanoid(), title, content }));
+      //dispatch(blogAdded({ id: nanoid(), title, content }));
+      dispatch(blogAdded(title, content));
+
       setTitle("");
       setContent("");
       navitage("/");
