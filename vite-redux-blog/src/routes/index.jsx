@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
+import SingleBlog from "../components/SingleBlog.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -11,6 +12,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <App />,
       },
+      {
+        path: "/blogs/:blogid",
+        element: <SingleBlog />
+      }
     ],
   },
 ]); //تمامی مسیر ها و کامپوننت هایی که باید نمایشد داده شود
