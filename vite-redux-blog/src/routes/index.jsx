@@ -3,6 +3,7 @@ import App from "../App.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
 import SingleBlog from "../components/SingleBlog.jsx";
 import CreateBlog from "../components/createBlog.jsx";
+import EditBlog from "../components/EditBlog.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs/:blogid",
         element: <SingleBlog />,
+      },
+      {
+        path: "/EditBlog/:blogid",
+        element: <EditBlog />,
       },
     ],
   },

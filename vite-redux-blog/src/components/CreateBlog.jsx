@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import { blogAdded } from "../reducers/blogSlice";
 import { useNavigate } from "react-router-dom";
 

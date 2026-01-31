@@ -5,7 +5,7 @@ const BlogsList = () => {
   const blogs = useSelector((st) => st.blogs); //blogs در blogsSlice تعرف شده
   const navigate = useNavigate();
   const renderBlogs = blogs.map((b) => (
-    <article className="blog-excerpt">
+    <article className="blog-excerpt" key={b.id}>
       <h3>{b.title}</h3>
       <p className="blog-content">{b.content.substring(0, 100)}</p>
       <Link to={`/blogs/${b.id}`} className="button muted-button">
