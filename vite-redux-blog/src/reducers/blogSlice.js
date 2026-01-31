@@ -6,7 +6,7 @@ const initialState = {
     {
       id: nanoid(), //nanoid
       // date: new Date().toISOString(),
-      date: sub(new Date(), { minutes: 10 }).toISOString(),
+      date: sub(new Date(), {days: 12, minutes: 10 }).toISOString(),
       title: "پست نخست",
       content: "محتوای جذاب اولین پست ما 😂",
     },

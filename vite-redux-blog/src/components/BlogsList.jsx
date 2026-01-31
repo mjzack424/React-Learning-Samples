@@ -6,7 +6,10 @@ import ShowTime from "./ShowTime";
 const BlogsList = () => {
   const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
   const navigate = useNavigate();
-  const renderBlogs = blogs.map((b) => (
+  const orderedBlogs = blogs
+    .slice()
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const renderBlogs = orderedBlogs.map((b) => (
     <article className="blog-excerpt" key={b.id}>
       <h3>{b.title}</h3>
       <div style={{ marginTop: "10px" }}>
