@@ -7,9 +7,9 @@ const ShowTime = ({ timestamp }) => {
     timeAgo = `${time} قبل`;
   }
   return (
-    <span>
+    <small>
       <i>{timeAgo}</i>
-    </span>
+    </small>
   );
 };
 
