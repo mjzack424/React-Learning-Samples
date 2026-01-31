@@ -1,8 +1,18 @@
-import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { blogDeleted, selectBlogById } from "../reducers/blogSlice";
 const SingleBlog = () => {
   const { blogid } = useParams();
-  const blog = useSelector((st) => st.blogs.find((b) => b.id === blogid));
+  const blog = useSelector((state) => selectBlogById(state, blogid));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    if (blog) {
+      dispatch(blogDeleted({ id: blog.id }));
+      navigate("/");
+    }
+  };
+
   if (!blog) {
     return (
       <section>
@@ -18,6 +28,13 @@ const SingleBlog = () => {
         <Link to={`/EditBlog/${blog.id}`} className="button">
           ویرایش مقاله
         </Link>
+        <button
+          className=" muted-button"
+          style={{ marginRight: "10px" }}
+          onClick={handleDelete}
+        >
+          حذف مقالی
+        </button>
       </article>
     </section>
   );

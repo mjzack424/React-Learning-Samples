@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { selectAllBlogs } from "../reducers/blogSlice";
 //useSelector برای دسترسی
 const BlogsList = () => {
-  const blogs = useSelector((st) => st.blogs); //blogs در blogsSlice تعرف شده
+  const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
   const navigate = useNavigate();
   const renderBlogs = blogs.map((b) => (
     <article className="blog-excerpt" key={b.id}>
@@ -16,7 +17,13 @@ const BlogsList = () => {
   return (
     <>
       <section className="blog-list">
-        <button className="full-button accent-button" style={{marginTop: "1em"}} onClick={() => {navigate("blogs/create-blog")}}>
+        <button
+          className="full-button accent-button"
+          style={{ marginTop: "1em" }}
+          onClick={() => {
+            navigate("blogs/create-blog");
+          }}
+        >
           ساخت پست جدید
         </button>
         <h2>فهرست پست ها</h2>
