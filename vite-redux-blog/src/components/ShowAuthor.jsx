@@ -5,9 +5,8 @@ const ShowAuthor = ({ userId }) => {
   );
 
   return (
-    <small style={{display: "block"}}>
-      توسط
-      &nbsp;
+    <small style={{ display: "block" }}>
+      توسط &nbsp;
       {author ? author.fullname : "نویسنده ناشناس"}
     </small>
   );

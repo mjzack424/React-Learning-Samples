@@ -1,22 +1,29 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useId, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { blogAdded } from "../reducers/blogSlice";
 import { useNavigate } from "react-router-dom";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [userId, setUserId] = useState("");
+  const users = useSelector((state) => state.users);
+
   const navitage = useNavigate();
   const dispatch = useDispatch();
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
+  const onAuthorChange = (e) => setUserId(e.target.value);
+  const canSave = [title, content, userId].every(Boolean);
+
   const handleFromSumbit = () => {
-    if (title && content) {
+    if (canSave) {
       //dispatch(blogAdded({ id: nanoid(), title, content }));
-      dispatch(blogAdded(title, content));
+      dispatch(blogAdded(title, content, userId));
 
       setTitle("");
       setContent("");
+      setUserId("");
       navitage("/");
     }
   };
@@ -41,8 +48,17 @@ const CreateBlog = () => {
           value={content}
           onChange={onContentChange}
         ></textarea>
+        <label htmlFor="blogAuthor">نویسنده :</label>
 
-        <button type="button" onClick={handleFromSumbit}>
+        <select id="blogAuthor" value={userId} onChange={onAuthorChange}>
+          <option value="">انتخاب نویسنده</option>
+          {users.map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.fullname}
+            </option>
+          ))}
+        </select>
+        <button type="button" onClick={handleFromSumbit} disabled={!canSave}>
           ذخیره پست
         </button>
       </form>

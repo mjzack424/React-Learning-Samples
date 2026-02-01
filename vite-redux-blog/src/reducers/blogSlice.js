@@ -30,7 +30,7 @@ const blogsSlice = createSlice({
       reducer(state, action) {
         state.blogs.push(action.payload);
       },
-      prepare(title, content) {
+      prepare(title, content, userId) {
         //Complex logic can be here
         return {
           payload: {
@@ -38,6 +38,7 @@ const blogsSlice = createSlice({
             date: new Date().toISOString(),
             title,
             content,
+            user: userId,
           },
         };
       },
