@@ -6,9 +6,10 @@ const initialState = {
     {
       id: nanoid(), //nanoid
       // date: new Date().toISOString(),
-      date: sub(new Date(), {days: 12, minutes: 10 }).toISOString(),
+      date: sub(new Date(), { days: 12, minutes: 10 }).toISOString(),
       title: "پست نخست",
       content: "محتوای جذاب اولین پست ما 😂",
+      user: "1",
     },
     {
       id: nanoid(), //nanoid
@@ -16,6 +17,7 @@ const initialState = {
       date: sub(new Date(), { minutes: 35 }).toISOString(),
       title: "پست دوم",
       content: "عجب بالا و پایین داره دنیا!",
+      user: "2",
     },
   ],
 };
