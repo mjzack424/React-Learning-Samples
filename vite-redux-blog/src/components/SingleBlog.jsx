@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { blogDeleted, selectBlogById } from "../reducers/blogSlice";
+import ReactionsButton from "./ReactionsButton";
 const SingleBlog = () => {
   const { blogid } = useParams();
   const blog = useSelector((state) => selectBlogById(state, blogid));
@@ -25,6 +26,7 @@ const SingleBlog = () => {
       <article className="blog">
         <h2>{blog.title}</h2>
         <p className="blog-content">{blog.content.substring(0, 100)}</p>
+        <ReactionsButton blog={blog} />
         <Link to={`/EditBlog/${blog.id}`} className="button">
           ویرایش مقاله
         </Link>
@@ -33,7 +35,7 @@ const SingleBlog = () => {
           style={{ marginRight: "10px" }}
           onClick={handleDelete}
         >
-          حذف مقالی
+          حذف مقاله
         </button>
       </article>
     </section>

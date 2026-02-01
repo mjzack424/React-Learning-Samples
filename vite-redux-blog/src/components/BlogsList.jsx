@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { selectAllBlogs } from "../reducers/blogSlice";
 import ShowTime from "./ShowTime";
 import ShowAuthor from "./ShowAuthor";
+import ReactionsButton from "./ReactionsButton";
 //useSelector برای دسترسی
 const BlogsList = () => {
   const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
@@ -20,6 +21,7 @@ const BlogsList = () => {
       <Link to={`/blogs/${b.id}`} className="button muted-button">
         مشاهده
       </Link>
+      <ReactionsButton blog={b} />
       <ShowAuthor userId={b.user} />
     </article>
   ));
