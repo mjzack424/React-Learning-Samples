@@ -2,12 +2,13 @@ import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { blogAdded } from "../reducers/blogSlice";
 import { useNavigate } from "react-router-dom";
+import { selectAllusers } from "../reducers/userSlice";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllusers);
 
   const navitage = useNavigate();
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import blogsReducer from "../reducers/blogSlice";
-import usersReducer from "../reducers/userSlice";
+import usersReducer, { fetchUsers } from "../reducers/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -9,3 +9,6 @@ export const store = configureStore({
     users: usersReducer,
   },
 });
+
+//Fetch all users from API
+store.dispatch(fetchUsers());

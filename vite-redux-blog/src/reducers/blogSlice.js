@@ -9,7 +9,7 @@ const initialState = {
       date: sub(new Date(), { days: 12, minutes: 10 }).toISOString(),
       title: "پست نخست",
       content: "محتوای جذاب اولین پست ما 😂",
-      user: "1",
+      user: "kdQkZ51A8D5NRRzd_XUeu",
 
       reactions: {
         thumbsUp: 0,
@@ -25,7 +25,7 @@ const initialState = {
       date: sub(new Date(), { minutes: 35 }).toISOString(),
       title: "پست دوم",
       content: "عجب بالا و پایین داره دنیا!",
-      user: "2",
+      user: "Bk9NPQ9Lk2dcG77qh22kH",
 
       reactions: {
         thumbsUp: 0,
