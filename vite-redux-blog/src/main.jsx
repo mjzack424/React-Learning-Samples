@@ -7,11 +7,18 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 
 import { router } from "./routes";
+import { fetchUsers } from "./reducers/userSlice";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </StrictMode>,
-);
+const main = () => {
+  //Fetch all users from API
+  store.dispatch(fetchUsers());
+  createRoot(document.getElementById("root")).render(
+    <StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </StrictMode>,
+  );
+};
+
+main();
