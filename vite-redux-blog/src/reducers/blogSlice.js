@@ -1,42 +1,18 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import { sub } from "date-fns-jalali";
+import { getAllBlogs } from "../services/blogsServices";
 
 const initialState = {
-  blogs: [
-    {
-      id: nanoid(), //nanoid
-      // date: new Date().toISOString(),
-      date: sub(new Date(), { days: 12, minutes: 10 }).toISOString(),
-      title: "پست نخست",
-      content: "محتوای جذاب اولین پست ما 😂",
-      user: "kdQkZ51A8D5NRRzd_XUeu",
-
-      reactions: {
-        thumbsUp: 0,
-        celebrate: 0,
-        heart: 0,
-        onFire: 0,
-        wtf: 0,
-      },
-    },
-    {
-      id: nanoid(), //nanoid
-      // date: new Date().toISOString(),
-      date: sub(new Date(), { minutes: 35 }).toISOString(),
-      title: "پست دوم",
-      content: "عجب بالا و پایین داره دنیا!",
-      user: "Bk9NPQ9Lk2dcG77qh22kH",
-
-      reactions: {
-        thumbsUp: 0,
-        celebrate: 0,
-        heart: 0,
-        onFire: 0,
-        wtf: 0,
-      },
-    },
-  ],
+  blogs: [],
+  status: "idle",
+  error: null,
 };
+
+export const fetchBlogs = createAsyncThunk("/blog/fetchBlogs", async () => {
+  //createAsyncThunk: سه اکشن اعزازم میکند شروع موفقیت شکست ما باید به این ها گوش بدیم و بال توجه به آن کار خاصی بکنیم
+  const response = await getAllBlogs();
+  return response.data;
+});
 
 const blogsSlice = createSlice({
   name: "blogs",
@@ -79,11 +55,25 @@ const blogsSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBlogs.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchBlogs.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.blogs = action.payload;
+      })
+      .addCase(fetchBlogs.rejected, (state, action) => {
+        ((state.state = "failed"), (state.error = action.error.message));
+      });
+  },
 });
 export const selectAllBlogs = (state) => state.blogs.blogs;
 
 export const selectBlogById = (state, blogId) =>
   state.blogs.blogs.find((blog) => blog.id === blogId);
 
-export const { blogAdded, blogUpdated, blogDeleted, reactionsAdded } = blogsSlice.actions;
+export const { blogAdded, blogUpdated, blogDeleted, reactionsAdded } =
+  blogsSlice.actions;
 export default blogsSlice.reducer;

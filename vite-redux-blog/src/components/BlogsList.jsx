@@ -1,13 +1,24 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { selectAllBlogs } from "../reducers/blogSlice";
+import { fetchBlogs, selectAllBlogs } from "../reducers/blogSlice";
 import ShowTime from "./ShowTime";
 import ShowAuthor from "./ShowAuthor";
 import ReactionsButton from "./ReactionsButton";
 //useSelector برای دسترسی
 const BlogsList = () => {
-  const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
+  const dispatche = useDispatch();
   const navigate = useNavigate();
+
+  const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
+  const blogStatus = useSelector((status) => status.blogs.status);
+
+  useEffect(() => {
+    if (blogStatus === "idle") {
+      dispatche(fetchBlogs());
+    }
+  }, [blogStatus, dispatche]);
+
   const orderedBlogs = blogs
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date));
