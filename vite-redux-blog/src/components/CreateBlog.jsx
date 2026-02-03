@@ -1,13 +1,16 @@
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { blogAdded } from "../reducers/blogSlice";
-import { useNavigate } from "react-router-dom";
+import { addNewBlog, blogAdded } from "../reducers/blogSlice";
+import { data, useNavigate } from "react-router-dom";
 import { selectAllusers } from "../reducers/userSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
+  const [requestStatus, setRequestStatus] = useState("idle");
+
   const users = useSelector(selectAllusers);
 
   const navitage = useNavigate();
@@ -15,17 +18,39 @@ const CreateBlog = () => {
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
   const onAuthorChange = (e) => setUserId(e.target.value);
-  const canSave = [title, content, userId].every(Boolean);
+  const canSave =
+    [title, content, userId].every(Boolean) && requestStatus === "idle";
 
-  const handleFromSumbit = () => {
+  const handleFromSumbit = async () => {
     if (canSave) {
-      //dispatch(blogAdded({ id: nanoid(), title, content }));
-      dispatch(blogAdded(title, content, userId));
-
-      setTitle("");
-      setContent("");
-      setUserId("");
-      navitage("/");
+      try {
+        setRequestStatus("pending");
+        await dispatch(
+          addNewBlog({
+            id: nanoid(),
+            date: new Date().toISOString(),
+            title,
+            content,
+            user: userId,
+            reactions: {
+              thumbsUp: 0,
+              celebrate: 0,
+              heart: 0,
+              onFire: 0,
+              wtf: 0,
+            },
+          }),
+        );
+        setTitle("");
+        setContent("");
+        setUserId("");
+        setRequestStatus("");
+        navitage("/");
+      } catch (error) {
+        console.error("Failed to save the blog", error);
+      } finally {
+        setRequestStatus("idle");
+      }
     }
   };
   return (
