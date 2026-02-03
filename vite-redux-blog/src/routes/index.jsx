@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import SingleBlog from "../components/SingleBlog.jsx";
 import CreateBlog from "../components/createBlog.jsx";
 import EditBlog from "../components/EditBlog.jsx";
+import UserList from "../components/UserList.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/EditBlog/:blogid",
         element: <EditBlog />,
+      },
+      {
+        path: "/users",
+        element: <UserList />,
       },
     ],
   },

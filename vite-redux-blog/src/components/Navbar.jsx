@@ -8,6 +8,8 @@ const Navbar = () => {
         <div className="navContent">
           <div className="navLinks">
             <Link to={"/"}>مقالات</Link>
+            <Link to={"/users"}>نویسندگان</Link>
+
           </div>
         </div>
       </section>
