@@ -1,6 +1,6 @@
 import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import { sub } from "date-fns-jalali";
-import { createBlog, getAllBlogs } from "../services/blogsServices";
+import { createBlog, deleteBlog, getAllBlogs } from "../services/blogsServices";
 
 const initialState = {
   blogs: [],
@@ -19,6 +19,14 @@ export const addNewBlog = createAsyncThunk(
   async (initalBlog) => {
     const response = await createBlog(initalBlog);
     return response.data;
+  },
+);
+
+export const deleteApiBlog = createAsyncThunk(
+  "/blogs/deleteApiBlog",
+  async (initalBlogId) => {
+    await deleteBlog(initalBlogId);
+    return initalBlogId;
   },
 );
 
@@ -84,6 +92,9 @@ const blogsSlice = createSlice({
       })
       .addCase(addNewBlog.fulfilled, (state, action) => {
         state.blogs.push(action.payload);
+      })
+      .addCase(deleteApiBlog.fulfilled, (state, action) => {
+        state.blogs = state.blogs.filter((blog) => blog.id !== action.payload);
       });
   },
 });
