@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { blogUpdated, selectBlogById } from "../reducers/blogSlice";
+import { updateApiBlog, selectBlogById } from "../reducers/blogSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditBlog = () => {
@@ -19,7 +19,22 @@ const EditBlog = () => {
 
   const handleSubmit = () => {
     if (title && content) {
-      dispatch(blogUpdated({ id: blogid, title, content }));
+      dispatch(
+        updateApiBlog({
+          id: blogid,
+          date: blog.date,
+          title,
+          content,
+          user: blog.user,
+          reactions: {
+            thumbsUp: 0,
+            celebrate: 0,
+            heart: 0,
+            onFire: 0,
+            wtf: 0,
+          },
+        }),
+      );
       navitage(`/blogs/${blogid}`);
     }
   };

@@ -1,6 +1,16 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  nanoid,
+  createAsyncThunk,
+  current,
+} from "@reduxjs/toolkit";
 import { sub } from "date-fns-jalali";
-import { createBlog, deleteBlog, getAllBlogs } from "../services/blogsServices";
+import {
+  createBlog,
+  deleteBlog,
+  getAllBlogs,
+  updateBlog,
+} from "../services/blogsServices";
 
 const initialState = {
   blogs: [],
@@ -27,6 +37,14 @@ export const deleteApiBlog = createAsyncThunk(
   async (initalBlogId) => {
     await deleteBlog(initalBlogId);
     return initalBlogId;
+  },
+);
+
+export const updateApiBlog = createAsyncThunk(
+  "/blogs/updateApiBlog",
+  async (initalBlog) => {
+    const response = await updateBlog(initalBlog, initalBlog.id);
+    return response.data;
   },
 );
 
@@ -95,6 +113,13 @@ const blogsSlice = createSlice({
       })
       .addCase(deleteApiBlog.fulfilled, (state, action) => {
         state.blogs = state.blogs.filter((blog) => blog.id !== action.payload);
+      })
+      .addCase(updateApiBlog.fulfilled, (state, action) => {
+        const { id } = action.payload;
+        const updatedBlogIndex = state.blogs.findIndex(
+          (blog) => blog.id === id,
+        );
+        state.blogs[updatedBlogIndex] = action.payload;
       });
   },
 });
