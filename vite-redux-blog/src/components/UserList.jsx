@@ -18,7 +18,7 @@ const UserList = () => {
   const handleSubmitForm = () => {
     if (canSave) {
       dispatch(AddNewUser({ id: nanoid(), fullname: newUser }));
-      setNewUser("")
+      setNewUser("");
     }
   };
 

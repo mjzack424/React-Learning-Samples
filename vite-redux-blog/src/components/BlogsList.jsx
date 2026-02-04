@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchBlogs, selectAllBlogs } from "../reducers/blogSlice";
@@ -7,29 +7,27 @@ import ShowAuthor from "./ShowAuthor";
 import ReactionsButton from "./ReactionsButton";
 import Spinner from "./Spinner";
 
-const Blogs = ({ blogs }) => {
-  const orderedBlogs = blogs
-    .slice()
-    .sort((a, b) => b.date.localeCompare(a.date));
+let Blog = ({ blog }) => {
   return (
-    <>
-      {orderedBlogs.map((b) => (
-        <article className="blog-excerpt" key={b.id}>
-          <h3>{b.title}</h3>
-          <div style={{ marginTop: "10px", marginRight: "10px" }}>
-            <ShowTime timestamp={b.date} />
-          </div>
-          <p className="blog-content">{b.content.substring(0, 100)}</p>
-          <Link to={`/blogs/${b.id}`} className="button muted-button">
-            مشاهده
-          </Link>
-          <ReactionsButton blog={b} />
-          <ShowAuthor userId={b.user} />
-        </article>
-      ))}
-    </>
+    <article className="blog-excerpt">
+      <h3>{blog.title}</h3>
+
+      <div style={{ marginTop: "10px", marginRight: "10px" }}>
+        <ShowTime timestamp={blog.date} />
+      </div>
+
+      <p className="blog-content">{blog.content.substring(0, 100)}</p>
+
+      <Link to={`/blogs/${blog.id}`} className="button muted-button">
+        مشاهده
+      </Link>
+
+      <ReactionsButton blog={blog} />
+      <ShowAuthor userId={blog.user} />
+    </article>
   );
 };
+Blog = memo(Blog); //زمانی تعییر میکند که پراپی که بهش داده شده تغییر  کند
 
 //useSelector برای دسترسی
 const BlogsList = () => {
@@ -49,7 +47,10 @@ const BlogsList = () => {
   if (blogStatus === "loading") {
     content = <Spinner text="بارگذاری..." />;
   } else if (blogStatus === "completed") {
-    content = <Blogs blogs={blogs} />;
+    const orderedBlogs = blogs
+      .slice()
+      .sort((a, b) => b.date.localeCompare(a.date));
+    content = orderedBlogs.map((blog) => <Blog key={blog.id} blog={blog} />);
   } else if (blogStatus === "failed") {
     content = <div>{error}</div>;
   }
