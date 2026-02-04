@@ -1,19 +1,75 @@
-import { useSelector } from "react-redux";
-import { selectAllusers } from "../reducers/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  AddNewUser,
+  deletApiUser,
+  selectAllusers,
+} from "../reducers/userSlice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 
 const UserList = () => {
+  const [newUser, setNewUser] = useState("");
+  const dispatch = useDispatch();
   const users = useSelector(selectAllusers);
+  const onUserChange = (e) => setNewUser(e.target.value);
+  const canSave = Boolean(newUser);
+
+  const handleSubmitForm = () => {
+    if (canSave) {
+      dispatch(AddNewUser({ id: nanoid(), fullname: newUser }));
+      setNewUser("")
+    }
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deletApiUser(id));
+  };
+
   const renderedUsers = users.map((user) => {
     return (
       <li key={user.id}>
-        <Link to={`/users/${user.id}`}>{user.fullname}</Link>
+        <Link to={`/users/${user.id}`} style={{ textDecoration: "none" }}>
+          {user.fullname}
+        </Link>
+        &nbsp;
+        <button
+          onClick={() => handleDelete(user.id)}
+          style={{
+            marginRight: "1px",
+            color: "tomato",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          &#8855;
+        </button>
       </li>
     );
   });
   return (
     <>
       <section className="UserList">
+        <div>
+          <form>
+            <label htmlFor="newUser">نام نویسنده</label>
+            <input
+              type="text"
+              id="newUser"
+              name="newUser"
+              value={newUser}
+              onChange={onUserChange}
+            />
+            <button
+              type="button"
+              onClick={handleSubmitForm}
+              disabled={!canSave}
+            >
+              ساخت نویسنده جدید
+            </button>
+          </form>
+        </div>
         <h2>فهرست نویسندگان</h2>
         <u>{renderedUsers}</u>
       </section>

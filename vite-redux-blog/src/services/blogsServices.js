@@ -30,6 +30,22 @@ export const getUser = (userId) => {
   return axios.get(url);
 };
 
+// @desc  Create New User
+// @route POST http://localhost:9000/users
+export const createUser = (user) => {
+  const url = `${SERVER_URL}/users`;
+  return axios.post(url, user);
+};
+
+// @desc  Delete User
+// @route DELETE http://localhost:9000/users/:userId
+export const deleteUser = (userId) => {
+  const url = `${SERVER_URL}/users/${userId}`;
+  return axios.delete(url);
+};
+
+
+
 // @desc  Create New Blog
 // @route POST http://localhost:9000/blogs
 export const createBlog = (blog) => {
