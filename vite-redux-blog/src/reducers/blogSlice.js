@@ -4,7 +4,9 @@ import {
   createAsyncThunk,
   current,
   createSelector,
+  createEntityAdapter,
 } from "@reduxjs/toolkit";
+
 import { sub } from "date-fns-jalali";
 import {
   createBlog,
@@ -13,11 +15,25 @@ import {
   updateBlog,
 } from "../services/blogsServices";
 
-const initialState = {
-  blogs: [],
+// const initialState = {
+//   blogs: [],
+//   status: "idle",
+//   error: null,
+// };
+
+const blogAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.date.localeCompare(a.date), //sortComparer method can give as option to Adapter(is like sort array method)
+  //Object here
+});
+
+const initialState = blogAdapter.getInitialState({
+  //it have InitialState too
   status: "idle",
   error: null,
-};
+});
+//the result of top code:
+//{ids: [], entities: {}, status: "idle", error: null}
+console.log(initialState);
 
 export const fetchBlogs = createAsyncThunk("/blog/fetchBlogs", async () => {
   //createAsyncThunk: سه اکشن اعزازم میکند شروع موفقیت شکست ما باید به این ها گوش بدیم و بال توجه به آن کار خاصی بکنیم
@@ -53,45 +69,18 @@ const blogsSlice = createSlice({
   name: "blogs",
   initialState: initialState,
   reducers: {
-    blogAdded: {
-      reducer(state, action) {
-        state.blogs.push(action.payload);
-      },
-      prepare(title, content, userId) {
-        //Complex logic can be here
-        return {
-          payload: {
-            id: nanoid(),
-            date: new Date().toISOString(),
-            title,
-            content,
-            user: userId,
-            reactions: {
-              thumbsUp: 0,
-              celebrate: 0,
-              heart: 0,
-              onFire: 0,
-              wtf: 0,
-            },
-          },
-        };
-      },
-    },
     blogUpdated: (state, action) => {
       const { id, title, content } = action.payload;
-      const existingBlog = state.blogs.find((blog) => blog.id === id);
+      const existingBlog = state.entities[id];
       if (existingBlog) {
         existingBlog.title = title;
         existingBlog.content = content;
       }
     },
-    blogDeleted: (state, action) => {
-      const { id } = action.payload;
-      state.blogs = state.blogs.filter((blog) => blog.id !== id); //this return new array
-    },
+
     reactionsAdded: (state, action) => {
       const { blogId, reaction } = action.payload;
-      const existingBlog = state.blogs.find((blog) => blog.id === blogId);
+      const existingBlog = state.entities[blogId];
       if (existingBlog) {
         existingBlog.reactions[reaction]++;
       }
@@ -99,18 +88,20 @@ const blogsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBlogs.pending, (state, action) => {
+      .addCase(fetchBlogs.pending, (state, _) => {
         state.status = "loading";
       })
       .addCase(fetchBlogs.fulfilled, (state, action) => {
         state.status = "completed";
-        state.blogs = action.payload;
+        // state.blogs = action.payload;
+        blogAdapter.upsertMany(state, action.payload); //چندین
       })
       .addCase(fetchBlogs.rejected, (state, action) => {
         ((state.state = "failed"), (state.error = action.error.message));
       })
-      .addCase(addNewBlog.fulfilled, (state, action) => {
-        state.blogs.push(action.payload);
+      .addCase(addNewBlog.fulfilled, (_, action) => {
+        // state.blogs.push(action.payload);
+        blogAdapter.addOne(action.payload);
       })
       .addCase(deleteApiBlog.fulfilled, (state, action) => {
         state.blogs = state.blogs.filter((blog) => blog.id !== action.payload);
@@ -124,10 +115,14 @@ const blogsSlice = createSlice({
       });
   },
 });
-export const selectAllBlogs = (state) => state.blogs.blogs;
 
-export const selectBlogById = (state, blogId) =>
-  state.blogs.blogs.find((blog) => blog.id === blogId);
+// export const selectAllBlogs = (state) => state.blogs.blogs;
+// export const selectBlogById = (state, blogId) =>
+//   state.blogs.blogs.find((blog) => blog.id === blogId);
+
+export const { selectAll: selectAllBlogs, selectById: selectBlogById, selectIds: selectBlogIds } = blogAdapter.getSelectors(
+  (state) => state.blogs,
+);
 
 export const selectUserBlogs = createSelector(
   // [selectAllBlogs, (state, userId) => userId],
