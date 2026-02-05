@@ -1,15 +1,15 @@
 const store = configureStore({
-    reducer: {},
+  reducer: {},
 });
 
 const exampleThunkFunction = (dispatch, getState) => {
-    const stateBefore = getState();
-    console.log(`Counter before: ${stateBefore.counter}`);
+  const stateBefore = getState();
+  console.log(`Counter before: ${stateBefore.counter}`);
 
-    dispatch(increment());
+  dispatch(increment());
 
-    const stateAfter = getState();
-    console.log(`Counter after: ${stateAfter.counter}`);
+  const stateAfter = getState();
+  console.log(`Counter after: ${stateAfter.counter}`);
 };
 
 store.dispatch(exampleThunkFunction);
@@ -19,21 +19,21 @@ dispatch(increment());
 
 //Thunk Action Creator
 const logAndAdd = (amount) => {
-    return async (dispatch, getState) => {
-        const stateBefore = getState();
-        console.log(`Counter before: ${stateBefore.counter}`);
+  return async (dispatch, getState) => {
+    const stateBefore = getState();
+    console.log(`Counter before: ${stateBefore.counter}`);
 
-        dispatch(incrementByAmount(amount));
+    dispatch(incrementByAmount(amount));
 
-        const stateAfter = getState();
-        console.log(`Counter after: ${stateAfter.counter}`);
-    };
+    const stateAfter = getState();
+    console.log(`Counter after: ${stateAfter.counter}`);
+  };
 };
 
 //CreateAsyncThunk
 export const fetchBlogs = createAsynThunk("blogs/fetchBlogs", async () => {
-    const response = await client.get("url");
-    return response.data;
+  const response = await client.get("url");
+  return response.data;
 });
 //returns start/success/failure action
 
@@ -55,16 +55,19 @@ selectBlogsByUser(state1, "user1"); //اجرا نمیشه چون پارامتر�
 selectBlogsByUser(state1, "user2"); //اجرا میشه چون پارامتر تغییر کرده
 
 //Normalized State
-{
-    users: {
-        ids: ["user1","user2","user3"],
-        entities: {
-            "user1": {id:  "user1", firstName: "Younes"},
-            "user2": {id:  "user2", firstName: "Younes"},
-            "user3": {id:  "user3", firstName: "Younes"}
-        }
-    }
-}
+// {
+//     users: {
+//         ids: ["user1","user2","user3"],
+//         entities: {
+//             "user1": {id:  "user1", firstName: "Younes"},
+//             "user2": {id:  "user2", firstName: "Younes"},
+//             "user3": {id:  "user3", firstName: "Younes"}
+//         }
+//     }
+// }
 
 const userId = "user2";
-const userObject = state.users.entities[userId] //will bring user2
+const userObject = state.users.entities[userId]; //will bring user2
+
+//createEntitityAdaptor
+//create Entity Adapter

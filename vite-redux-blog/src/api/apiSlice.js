@@ -1,0 +1,19 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+//or (is the same)
+// import { createApi } from '@reduxjs/toolkit/query/react'
+
+// createApi //برای ساختن API
+// fetchBaseQuery //یک رپر است دور فچ
+
+export const apiSlice = createApi({
+  reducerPath: "api", //مسیر قرار گیری کش های ما //state.api
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }), //base url
+  endpoints: (builder) => ({
+    //مسیر هایی که قرار است به آن ها درخواست بفرستیم
+    getBlogs: builder.query({
+      query: () => "/blogs",
+    }),
+  }),
+});
+
+export const {useGetBlogsQuery} = apiSlice;
