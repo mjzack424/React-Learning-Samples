@@ -69,15 +69,6 @@ const blogsSlice = createSlice({
   name: "blogs",
   initialState: initialState,
   reducers: {
-    blogUpdated: (state, action) => {
-      const { id, title, content } = action.payload;
-      const existingBlog = state.entities[id];
-      if (existingBlog) {
-        existingBlog.title = title;
-        existingBlog.content = content;
-      }
-    },
-
     reactionsAdded: (state, action) => {
       const { blogId, reaction } = action.payload;
       const existingBlog = state.entities[blogId];
@@ -99,20 +90,9 @@ const blogsSlice = createSlice({
       .addCase(fetchBlogs.rejected, (state, action) => {
         ((state.state = "failed"), (state.error = action.error.message));
       })
-      .addCase(addNewBlog.fulfilled, (_, action) => {
-        // state.blogs.push(action.payload);
-        blogAdapter.addOne(action.payload);
-      })
-      .addCase(deleteApiBlog.fulfilled, (state, action) => {
-        state.blogs = state.blogs.filter((blog) => blog.id !== action.payload);
-      })
-      .addCase(updateApiBlog.fulfilled, (state, action) => {
-        const { id } = action.payload;
-        const updatedBlogIndex = state.blogs.findIndex(
-          (blog) => blog.id === id,
-        );
-        state.blogs[updatedBlogIndex] = action.payload;
-      });
+      .addCase(addNewBlog.fulfilled, blogAdapter.addOne) //اگر فقط یکی داشته باشیم
+      .addCase(deleteApiBlog.fulfilled, blogAdapter.removeOne)
+      .addCase(updateApiBlog.fulfilled, blogAdapter.updateOne);
   },
 });
 
@@ -120,9 +100,11 @@ const blogsSlice = createSlice({
 // export const selectBlogById = (state, blogId) =>
 //   state.blogs.blogs.find((blog) => blog.id === blogId);
 
-export const { selectAll: selectAllBlogs, selectById: selectBlogById, selectIds: selectBlogIds } = blogAdapter.getSelectors(
-  (state) => state.blogs,
-);
+export const {
+  selectAll: selectAllBlogs,
+  selectById: selectBlogById,
+  selectIds: selectBlogIds,
+} = blogAdapter.getSelectors((state) => state.blogs);
 
 export const selectUserBlogs = createSelector(
   // [selectAllBlogs, (state, userId) => userId],
