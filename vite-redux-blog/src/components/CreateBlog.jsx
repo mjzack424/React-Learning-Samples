@@ -1,46 +1,42 @@
-import { useId, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewBlog, blogAdded } from "../reducers/blogSlice";
-import { data, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { selectAllusers } from "../reducers/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { useAddNewBlogMutation } from "../api/apiSlice";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
-  const [requestStatus, setRequestStatus] = useState("idle");
 
   const users = useSelector(selectAllusers);
 
+  const [addNewBlog, { isLoading }] = useAddNewBlogMutation();
+
   const navitage = useNavigate();
-  const dispatch = useDispatch();
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
   const onAuthorChange = (e) => setUserId(e.target.value);
-  const canSave =
-    [title, content, userId].every(Boolean) && requestStatus === "idle";
+  const canSave = [title, content, userId].every(Boolean) && !isLoading;
 
   const handleFromSumbit = async () => {
     if (canSave) {
       try {
-        setRequestStatus("pending");
-        await dispatch(
-          addNewBlog({
-            id: nanoid(),
-            date: new Date().toISOString(),
-            title,
-            content,
-            user: userId,
-            reactions: {
-              thumbsUp: 0,
-              celebrate: 0,
-              heart: 0,
-              onFire: 0,
-              wtf: 0,
-            },
-          }),
-        );
+        await addNewBlog({
+          id: nanoid(),
+          date: new Date().toISOString(),
+          title,
+          content,
+          user: userId,
+          reactions: {
+            thumbsUp: 0,
+            celebrate: 0,
+            heart: 0,
+            onFire: 0,
+            wtf: 0,
+          },
+        }).unwrap();
         setTitle("");
         setContent("");
         setUserId("");
@@ -48,8 +44,6 @@ const CreateBlog = () => {
         navitage("/");
       } catch (error) {
         console.error("Failed to save the blog", error);
-      } finally {
-        setRequestStatus("idle");
       }
     }
   };
