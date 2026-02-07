@@ -8,10 +8,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api", //مسیر قرار گیری کش های ما //state.api
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }), //base url
+  tagTypes: ["BLOGS"], //برای بی اعتبار کردن کش استفاده میکنیم
   endpoints: (builder) => ({
     //مسیر هایی که قرار است به آن ها درخواست بفرستیم
     getBlogs: builder.query({
       query: () => "/blogs",
+      providesTags: ["BLOGS"],
     }),
     getBlog: builder.query({
       query: (initialId) => `/blogs/${initialId}`,
@@ -22,6 +24,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: initialBlog,
       }),
+      invalidatesTags: ["BLOGS"],
     }),
   }),
 });
