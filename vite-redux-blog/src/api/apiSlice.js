@@ -1,40 +1,53 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-//or (is the same)
-// import { createApi } from '@reduxjs/toolkit/query/react'
-
-// createApi //برای ساختن API
-// fetchBaseQuery //یک رپر است دور فچ
 
 export const apiSlice = createApi({
-  reducerPath: "api", //مسیر قرار گیری کش های ما //state.api
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }), //base url
-  tagTypes: ["BLOGS"], //برای بی اعتبار کردن کش استفاده میکنیم
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }),
+  tagTypes: ["BLOG"],
   endpoints: (builder) => ({
-    //مسیر هایی که قرار است به آن ها درخواست بفرستیم
+
     getBlogs: builder.query({
       query: () => "/blogs",
-      providesTags: ["BLOGS"],
+      providesTags: (result = []) => [
+        { type: "BLOG", id: "LIST" },
+        ...result.map(({ id }) => ({ type: "BLOG", id })),
+      ],
     }),
+
     getBlog: builder.query({
-      query: (initialId) => `/blogs/${initialId}`,
+      query: (id) => `/blogs/${id}`,
+      providesTags: (result, error, id) => [
+        { type: "BLOG", id }
+      ],
     }),
+
     addNewBlog: builder.mutation({
       query: (initialBlog) => ({
         url: "/blogs",
         method: "POST",
         body: initialBlog,
       }),
-      invalidatesTags: ["BLOGS"],
+      invalidatesTags: [{ type: "BLOG", id: "LIST" }],
     }),
+
     editBlog: builder.mutation({
-        query: blog => ({
-            url: `/blogs/${blog.id}`,
-            method: "PUT", //or "PATCH"
-            body: blog
-        })
-    })
+      query: (blog) => ({
+        url: `/blogs/${blog.id}`,
+        method: "PUT",
+        body: blog,
+      }),
+      invalidatesTags: (result, error, blog) => [
+        { type: "BLOG", id: blog.id },
+        { type: "BLOG", id: "LIST" },
+      ],
+    }),
+
   }),
 });
 
-export const { useGetBlogsQuery, useGetBlogQuery, useAddNewBlogMutation, useEditBlogMutation } =
-  apiSlice;
+export const {
+  useGetBlogsQuery,
+  useGetBlogQuery,
+  useAddNewBlogMutation,
+  useEditBlogMutation,
+} = apiSlice;
