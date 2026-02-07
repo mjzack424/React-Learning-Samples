@@ -10,7 +10,8 @@ export const store = configureStore({
     users: usersReducer,
     [apiSlice.reducerPath]: apiSlice.reducer, //🆕
   },
-  middleware: getDefaultMiddleware().concat(apiSlice.middleware), //🆕
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware), //🆕
   //خط بالا میگه میدل ویر هایی که پیش فرض هست رو بگیر ادامش اضافه کن میدل ویر جدید رو
   //این میدلویر برای طول عمر کش هست هر وقت ای پی آی الایس ساختیم باید این میدلویر رو هم بسازیم
 });

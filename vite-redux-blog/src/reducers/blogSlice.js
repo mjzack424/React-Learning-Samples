@@ -88,7 +88,8 @@ const blogsSlice = createSlice({
         blogAdapter.upsertMany(state, action.payload); //چندین
       })
       .addCase(fetchBlogs.rejected, (state, action) => {
-        ((state.state = "failed"), (state.error = action.error.message));
+        state.status = "failed";
+        state.error = action.error.message;
       })
       .addCase(addNewBlog.fulfilled, blogAdapter.addOne) //اگر فقط یکی داشته باشیم
       .addCase(deleteApiBlog.fulfilled, blogAdapter.removeOne)

@@ -1,7 +1,7 @@
-import { useEffect, memo } from "react";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchBlogs, selectAllBlogs } from "../reducers/blogSlice";
+import { useGetBlogsQuery } from "../api/apiSlice";
 import ShowTime from "./ShowTime";
 import ShowAuthor from "./ShowAuthor";
 import ReactionsButton from "./ReactionsButton";
@@ -27,31 +27,31 @@ let Blog = ({ blog }) => {
     </article>
   );
 };
-Blog = memo(Blog); //زمانی تعییر میکند که پراپی که بهش داده شده تغییر  کند
 
 //useSelector برای دسترسی
 const BlogsList = () => {
-  const dispatche = useDispatch();
+  const {
+    data: blogs = [],
+    isLoading,
+    isSuccess,
+    isError,
+    // isFetching,
+    error,
+  } = useGetBlogsQuery();
   const navigate = useNavigate();
 
-  const blogs = useSelector(selectAllBlogs); //blogs در blogsSlice تعرف شده
-  const blogStatus = useSelector((status) => status.blogs.status);
-  const error = useSelector((state) => state.error);
+  const sortedBlogs = useMemo(() => {
+    const storedBlogs = blogs.slice();
+    storedBlogs.sort((a, b) => b.date.localeCompare(a.date));
+    return storedBlogs;
+  }, [blogs]);
 
-  useEffect(() => {
-    if (blogStatus === "idle") {
-      dispatche(fetchBlogs());
-    }
-  }, [blogStatus, dispatche]);
   let content;
-  if (blogStatus === "loading") {
+  if (isLoading) {
     content = <Spinner text="بارگذاری..." />;
-  } else if (blogStatus === "completed") {
-    const orderedBlogs = blogs
-      .slice()
-      .sort((a, b) => b.date.localeCompare(a.date));
-    content = orderedBlogs.map((blog) => <Blog key={blog.id} blog={blog} />);
-  } else if (blogStatus === "failed") {
+  } else if (isSuccess) {
+    content = sortedBlogs.map((blog) => <Blog key={blog.id} blog={blog} />);
+  } else if (isError) {
     content = <div>{error}</div>;
   }
 
