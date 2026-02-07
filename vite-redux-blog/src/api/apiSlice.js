@@ -26,8 +26,15 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["BLOGS"],
     }),
+    editBlog: builder.mutation({
+        query: blog => ({
+            url: `/blogs/${blog.id}`,
+            method: "PUT", //or "PATCH"
+            body: blog
+        })
+    })
   }),
 });
 
-export const { useGetBlogsQuery, useGetBlogQuery, useAddNewBlogMutation } =
+export const { useGetBlogsQuery, useGetBlogQuery, useAddNewBlogMutation, useEditBlogMutation } =
   apiSlice;

@@ -1,40 +1,38 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateApiBlog, selectBlogById } from "../reducers/blogSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEditBlogMutation, useGetBlogQuery } from "../api/apiSlice";
 
 const EditBlog = () => {
   const { blogid } = useParams();
 
-  const blog = useSelector((state) => selectBlogById(state, blogid));
+  const { data: blog } = useGetBlogQuery(blogid);
+  const [updateBlog, { isLoading }] = useEditBlogMutation();
 
   const [title, setTitle] = useState(blog.title);
   const [content, setContent] = useState(blog.content);
 
   const navitage = useNavigate();
-  const dispatch = useDispatch();
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const editedBlog = {
+      id: blogid,
+      date: blog.date,
+      title,
+      content,
+      user: blog.user,
+      reactions: {
+        thumbsUp: 0,
+        celebrate: 0,
+        heart: 0,
+        onFire: 0,
+        wtf: 0,
+      },
+    };
     if (title && content) {
-      dispatch(
-        updateApiBlog({
-          id: blogid,
-          date: blog.date,
-          title,
-          content,
-          user: blog.user,
-          reactions: {
-            thumbsUp: 0,
-            celebrate: 0,
-            heart: 0,
-            onFire: 0,
-            wtf: 0,
-          },
-        }),
-      );
+      await updateBlog(editedBlog).unwrap();
       navitage(`/blogs/${blogid}`);
     }
   };
@@ -80,27 +78,3 @@ const EditBlog = () => {
   );
 };
 export default EditBlog;
-
-// const CreateBlog = () => {
-//   const [title, setTitle] = useState("");
-//   const [content, setContent] = useState("");
-//   const navitage = useNavigate();
-//   const dispatch = useDispatch();
-//   const onTitleChange = (e) => setTitle(e.target.value);
-//   const onContentChange = (e) => setContent(e.target.value);
-//   const handleFromSumbit = () => {
-//     if (title && content) {
-//       //dispatch(blogAdded({ id: nanoid(), title, content }));
-//       dispatch(blogAdded(title, content));
-
-//       setTitle("");
-//       setContent("");
-//       navitage("/");
-//     }
-//   };
-//   return (
-
-//   );
-// };
-
-// export default CreateBlog;
