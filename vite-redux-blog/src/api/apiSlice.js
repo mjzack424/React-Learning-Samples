@@ -5,7 +5,6 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }),
   tagTypes: ["BLOG"],
   endpoints: (builder) => ({
-
     getBlogs: builder.query({
       query: () => "/blogs",
       providesTags: (result = []) => [
@@ -16,9 +15,7 @@ export const apiSlice = createApi({
 
     getBlog: builder.query({
       query: (id) => `/blogs/${id}`,
-      providesTags: (result, error, id) => [
-        { type: "BLOG", id }
-      ],
+      providesTags: (result, error, id) => [{ type: "BLOG", id }],
     }),
 
     addNewBlog: builder.mutation({
@@ -41,7 +38,9 @@ export const apiSlice = createApi({
         { type: "BLOG", id: "LIST" },
       ],
     }),
-
+    getUsers: builder.query({
+      query: () => "/users",
+    }),
   }),
 });
 

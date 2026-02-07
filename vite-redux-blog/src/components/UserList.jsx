@@ -1,7 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  AddNewUser,
-  deletApiUser,
   selectAllusers,
 } from "../reducers/userSlice";
 import { Link } from "react-router-dom";
@@ -10,17 +8,16 @@ import { nanoid } from "@reduxjs/toolkit";
 
 const UserList = () => {
   const [newUser, setNewUser] = useState("");
-  const dispatch = useDispatch();
   const users = useSelector(selectAllusers);
   const onUserChange = (e) => setNewUser(e.target.value);
   const canSave = Boolean(newUser);
 
-  const handleSubmitForm = () => {
-    if (canSave) {
-      dispatch(AddNewUser({ id: nanoid(), fullname: newUser }));
-      setNewUser("");
-    }
-  };
+  // const handleSubmitForm = () => {
+  //   if (canSave) {
+  //     dispatch(AddNewUser({ id: nanoid(), fullname: newUser }));
+  //     setNewUser("");
+  //   }
+  // };
 
   const handleDelete = (id) => {
     dispatch(deletApiUser(id));
@@ -33,7 +30,7 @@ const UserList = () => {
           {user.fullname}
         </Link>
         &nbsp;
-        <button
+        {/* <button
           onClick={() => handleDelete(user.id)}
           style={{
             marginRight: "1px",
@@ -44,7 +41,7 @@ const UserList = () => {
           }}
         >
           &#8855;
-        </button>
+        </button> */}
       </li>
     );
   });
@@ -63,7 +60,7 @@ const UserList = () => {
             />
             <button
               type="button"
-              onClick={handleSubmitForm}
+              // onClick={handleSubmitForm}
               disabled={!canSave}
             >
               ساخت نویسنده جدید

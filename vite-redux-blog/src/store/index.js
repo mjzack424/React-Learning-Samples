@@ -17,4 +17,6 @@ export const store = configureStore({
 });
 
 //Fetch all users from API
-store.dispatch(fetchUsers());
+// store.dispatch(fetchUsers());
+console.log(apiSlice.endpoints.getUsers);
+store.dispatch(apiSlice.endpoints.getUsers.initiate());
