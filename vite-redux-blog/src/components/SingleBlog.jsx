@@ -1,15 +1,36 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { selectBlogById, deleteApiBlog } from "../reducers/blogSlice";
+import { useGetBlogQuery } from "../api/apiSlice";
+
 import ReactionsButton from "./ReactionsButton";
+import Spinner from "./Spinner";
 const SingleBlog = () => {
   const { blogid } = useParams();
-  const blog = useSelector((state) => selectBlogById(state, blogid));
+  const { data: blog, isFetching, isSuccess } = useGetBlogQuery(blogid);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  let content;
+  if (isFetching) {
+    content = <Spinner text="در حال بارگذاری..." />;
+  } else if (isSuccess) {
+    content = (
+      <article className="blog">
+        <h2>{blog.title}</h2>
+        <p className="blog-content">{blog.content.substring(0, 100)}</p>
+        <ReactionsButton blog={blog} />
+        <Link to={`/EditBlog/${blog.id}`} className="button">
+          ویرایش مقاله
+        </Link>
+        <button
+          className=" muted-button"
+          style={{ marginRight: "10px" }}
+        >
+          حذف مقاله
+        </button>
+      </article>
+    );
+  }
   const handleDelete = () => {
     if (blog) {
-      dispatch(deleteApiBlog(blog.id));
       navigate("/");
     }
   };
@@ -21,24 +42,6 @@ const SingleBlog = () => {
       </section>
     );
   }
-  return (
-    <section>
-      <article className="blog">
-        <h2>{blog.title}</h2>
-        <p className="blog-content">{blog.content.substring(0, 100)}</p>
-        <ReactionsButton blog={blog} />
-        <Link to={`/EditBlog/${blog.id}`} className="button">
-          ویرایش مقاله
-        </Link>
-        <button
-          className=" muted-button"
-          style={{ marginRight: "10px" }}
-          onClick={handleDelete}
-        >
-          حذف مقاله
-        </button>
-      </article>
-    </section>
-  );
+  return <section>{content}</section>;
 };
 export default SingleBlog;
