@@ -37,6 +37,7 @@ const BlogsList = () => {
     isError,
     // isFetching,
     error,
+    refetch,
   } = useGetBlogsQuery();
   const navigate = useNavigate();
 
@@ -68,6 +69,7 @@ const BlogsList = () => {
           ساخت پست جدید
         </button>
         <h2>فهرست پست ها</h2>
+        <button onClick={refetch}>رفرش پست ها🔄️</button>
         {content}
       </section>
     </>
