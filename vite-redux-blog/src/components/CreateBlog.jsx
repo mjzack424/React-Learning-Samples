@@ -40,7 +40,6 @@ const CreateBlog = () => {
         setTitle("");
         setContent("");
         setUserId("");
-        setRequestStatus("");
         navitage("/");
       } catch (error) {
         console.error("Failed to save the blog", error);
