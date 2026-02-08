@@ -38,9 +38,7 @@ export const apiSlice = createApi({
         { type: "BLOG", id: "LIST" },
       ],
     }),
-    getUsers: builder.query({
-      query: () => "/users",
-    }),
+    
   }),
 });
 
