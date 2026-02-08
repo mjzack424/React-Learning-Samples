@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 
 import { router } from "./routes";
-import { fetchUsers } from "./reducers/userSlice";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
