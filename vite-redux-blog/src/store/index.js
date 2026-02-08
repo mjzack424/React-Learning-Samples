@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import blogsReducer from "../reducers/blogSlice";
-import usersReducer from "../reducers/userSlice";
+import usersReducer, { extendedAPiSlice } from "../reducers/userSlice";
 import { apiSlice } from "../api/apiSlice"; //🆕
 
 export const store = configureStore({
@@ -17,5 +17,5 @@ export const store = configureStore({
 });
 
 //Fetch all users from API
-console.log(apiSlice.endpoints.getUsers);
-store.dispatch(apiSlice.endpoints.getUsers.initiate());
+//console.log(apiSlice.endpoints.getUsers);
+store.dispatch(extendedAPiSlice.endpoints.getUsers.initiate());
