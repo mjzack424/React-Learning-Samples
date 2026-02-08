@@ -39,8 +39,11 @@ const usersSlice = createSlice({
 
 const selectUsersData = createSelector(
   selectUsersResult,
-  (usersResult) => usersResult.data,
+  (usersResult) => usersResult?.data
 );
+
+
+
 
 export const { selectAll: selectAllusers, selectById: selectUserById } =
   userAdapter.getSelectors((state) => selectUsersData(state) ?? initialState);
