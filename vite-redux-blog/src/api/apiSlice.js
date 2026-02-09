@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }),
-  tagTypes: ["BLOG"],
+  tagTypes: ["BLOG","USER"],
   endpoints: (builder) => ({
     getBlogs: builder.query({
       query: () => "/blogs",
@@ -38,7 +38,14 @@ export const apiSlice = createApi({
         { type: "BLOG", id: "LIST" },
       ],
     }),
-    
+
+    deleteBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `/blogs/${blogId}`,
+        method: "DELETE",
+        invalidatesTags: ["BLOG"],
+      }),
+    }),
   }),
 });
 
@@ -47,4 +54,5 @@ export const {
   useGetBlogQuery,
   useAddNewBlogMutation,
   useEditBlogMutation,
+  useDeleteBlogMutation,
 } = apiSlice;

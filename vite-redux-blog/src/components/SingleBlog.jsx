@@ -1,12 +1,21 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useGetBlogQuery } from "../api/apiSlice";
+import { useDeleteBlogMutation, useGetBlogQuery } from "../api/apiSlice";
 
 import ReactionsButton from "./ReactionsButton";
 import Spinner from "./Spinner";
 const SingleBlog = () => {
   const { blogid } = useParams();
   const { data: blog, isFetching, isSuccess } = useGetBlogQuery(blogid);
+
+  const [deleteBlog] = useDeleteBlogMutation();
   const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    if (blog) {
+      await deleteBlog(blogid);
+      navigate("/");
+    }
+  };
 
   let content;
   if (isFetching) {
@@ -23,17 +32,13 @@ const SingleBlog = () => {
         <button
           className=" muted-button"
           style={{ marginRight: "10px" }}
+          onClick={handleDelete}
         >
           حذف مقاله
         </button>
       </article>
     );
   }
-  const handleDelete = () => {
-    if (blog) {
-      navigate("/");
-    }
-  };
 
   if (!blog) {
     return (

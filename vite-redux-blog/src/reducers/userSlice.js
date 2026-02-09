@@ -16,6 +16,22 @@ export const extendedAPiSlice = apiSlice.injectEndpoints({
       transformResponse: (responseData) => {
         return userAdapter.setAll(initialState, responseData);
       },
+      providesTags: ["USER"],
+    }),
+    addNewUser: builder.mutation({
+      query: (user) => ({
+        url: "/users",
+        method: "POST",
+        body: user,
+      }),
+      invalidatesTags: ["USER"],
+    }),
+    deleteUser: builder.mutation({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["USER"],
     }),
   }),
 });
@@ -39,15 +55,16 @@ const usersSlice = createSlice({
 
 const selectUsersData = createSelector(
   selectUsersResult,
-  (usersResult) => usersResult?.data
+  (usersResult) => usersResult?.data,
 );
-
-
-
 
 export const { selectAll: selectAllusers, selectById: selectUserById } =
   userAdapter.getSelectors((state) => selectUsersData(state) ?? initialState);
 
-export const { userGetUsersQuery } = extendedAPiSlice;
+export const {
+  useGetUsersQuery,
+  useAddNewUserMutation,
+  useDeleteUserMutation,
+} = extendedAPiSlice;
 
 export default usersSlice.reducer;
