@@ -16,7 +16,6 @@ const SingleBlog = () => {
       navigate("/");
     }
   };
-
   let content;
   if (isFetching) {
     content = <Spinner text="در حال بارگذاری..." />;
