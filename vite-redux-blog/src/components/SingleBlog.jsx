@@ -38,7 +38,6 @@ const SingleBlog = () => {
       </article>
     );
   }
-
   if (!blog) {
     return (
       <section>
