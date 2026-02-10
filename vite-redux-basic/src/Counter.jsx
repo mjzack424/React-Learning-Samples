@@ -12,6 +12,10 @@ const Counter = () => {
   const [amount, setAmount] = useState(1);
   const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
+  const handleReset = () => {
+    dispatch(rest());
+    setAmount(1);
+  };
 
   return (
     <>
@@ -23,7 +27,6 @@ const Counter = () => {
           alignItems: "center",
           alignContent: "center",
           textAlign: "center",
-
         }}
       >
         تعداد:
@@ -75,6 +78,9 @@ const Counter = () => {
         >
           ➖
         </button>
+      </div>
+      <div>
+        <button onClick={handleReset}>Restart</button>
       </div>
     </>
   );
