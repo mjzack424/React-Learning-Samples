@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// import CustomNumeralNumericFormat from "./Price";
+import CustomNumeralNumericFormat from "./Price";
 
 
 const ProductCard = ({ product }) => {
@@ -26,13 +26,12 @@ const ProductCard = ({ product }) => {
               className="text-palette-dark font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter 
             rounded-tl-sm triangle"
             >
-              {/* <CustomNumeralNumericFormat
+              <CustomNumeralNumericFormat
                             value={price}
                             thousandSeparator=","
                             prefix={`قیمت : ‍‍‍`}
                             suffix={` تومان `}
-                        /> */}
-              {price} تومان
+                        />
             </div>
           </div>
         </div>
