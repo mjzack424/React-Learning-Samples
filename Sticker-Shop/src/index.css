@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@theme {
+  /* ارتفاع‌های سفارشی */
+  --spacing-112: 28rem;
+  --spacing-120: 30rem;
+  
+  /* حداقل ارتفاع */
+  --min-height-80: 20rem;
+  
+  /* رنگ‌های پالت */
+  --color-palette-lighter: #F5F3FF;
+  --color-palette-light: #DDD6FE;
+  --color-palette-primary: #5B21B6;
+  --color-palette-dark: #4C1D95;
+  
+  /* فونت اختصاصی */
+  --font-primary: "tanha", "sans-serif";
+}

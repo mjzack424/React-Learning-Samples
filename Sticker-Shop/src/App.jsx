@@ -1,12 +1,18 @@
+import { Helmet } from "react-helmet";
+import MainLayout from "./components/layouts/MainLayout";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 function App() {
   return (
-    <div className="App">
-      <div className="min-h-screen flex items-center justify-center bg-zinc-900">
-        <h1 className="text-4xl font-bold text-cyan-400">
-          Tailwind v4.1 is working 🚀
-        </h1>
+    <MainLayout>
+      <Helmet>
+        <title>فروشگاه استیکر</title>
+      </Helmet>
+      <div className="mx-auto max-w-6xl">
+        <Header />
+        <ProductList />
       </div>
-    </div>
+    </MainLayout>
   );
 }
 
