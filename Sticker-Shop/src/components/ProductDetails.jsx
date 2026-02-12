@@ -41,6 +41,7 @@ const ProductDetails = () => {
               ></i>
               برگشت به صفحه محصولات
             </Link>
+            <i className="fa fa-user"></i><i className="fa fa-user"></i><i className="fa fa-user"></i><i className="fa fa-user"></i>
 
             <div className=" font-primary">
               <h1 className="leading-relaxed font-extrabold text-3xl text-palette-primary py-2 sm:py-4">
