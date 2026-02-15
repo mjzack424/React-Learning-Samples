@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 9, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/counter-nextjs/src/pages/App.module.css [ssr] (css module)"],"sourcesContent":["__turbopack_context__.v({\n});\n"],"names":[],"mappings":"AAAA;AACA"}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///G:/MyProjects/WebDeveloper/React/React-Samples/project/React-Learning-Samples/counter-nextjs/src/pages/App.js"],"sourcesContent":["import \"./App.module.css\";\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <h1>خانه</h1>\n    </div>\n  );\n}\n\nexport default App;\n"],"names":[],"mappings":";;;;;AAAA;;;AAEA,SAAS;IACP,qBACE,qKAAC;QAAI,WAAU;kBACb,cAAA,qKAAC;sBAAG;;;;;;;;;;;AAGV;uCAEe"}}]
+}

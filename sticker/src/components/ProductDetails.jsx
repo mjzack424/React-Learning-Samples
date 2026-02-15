@@ -1,20 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import CustomNumeralNumericFormat from "./Price";
 import ProductForm from "./ProductForm";
 import { Helmet } from "react-helmet";
+import { useGetProductQuery } from "../slices/productApi";
 
 const ProductDetails = () => {
     const { productID } = useParams();
 
-    const product = useSelector((state) =>
-        state.products.items.find((item) => item.id === productID)
-    );
+    const { data: product, isSuccess } = useGetProductQuery(productID);
 
     return (
         <div className="flex flex-col align-middle justify-center items-center md:flex-row md:items-start space-y-8 md:space-y-0 md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
-            {product ? (
+            {isSuccess ? (
                 <>
                     <Helmet>
                         <title> {product.title}</title>

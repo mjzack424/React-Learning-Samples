@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///G:/MyProjects/WebDeveloper/React/React-Samples/project/React-Learning-Samples/counter-nextjs/src/pages/App.js"],"sourcesContent":["import \"./App.css\";\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <h1>خانه</h1>\n    </div>\n  );\n}\n\nexport default App;\n"],"names":[],"mappings":";;;;;;;;;;;;AAEA,SAAS;IACP,qBACE,qKAAC;QAAI,WAAU;kBACb,cAAA,qKAAC;sBAAG;;;;;;;;;;;AAGV;uCAEe"}}]
+}

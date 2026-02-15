@@ -16,38 +16,18 @@ const ProductForm = ({ product }) => {
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item));
-        // navigate("/cart");
-    };
-
-    const updateQty = () => {
-        setQty(qty + 1);
+        navigate("/cart");
     };
 
     return (
         <div className="w-full">
             <div className="flex justify-start space-x-2 w-full">
-                <div className="flex flex-col items-start space-y-1 flex-grow-0">
-                    <label className="text-gray-500 text-base">تعداد</label>
-                    <input
-                        type="number"
-                        inputMode="numeric"
-                        id="quantity"
-                        name="quantity"
-                        min="1"
-                        step="1"
-                        value={qty}
-                        onChange={updateQty}
-                        className="text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light"
-                    />
-                </div>
                 <p className="text-green-600">در انبار موجود است</p>
             </div>
             <button
                 className={atcBtnStyle}
                 aria-label="cart-button"
-                onClick={() =>
-                    handleAddToCart({ ...product, cartQTY: qty })
-                }
+                onClick={() => handleAddToCart({ ...product, cartQty: qty })}
             >
                 اضافه به سبد خرید
                 <i
