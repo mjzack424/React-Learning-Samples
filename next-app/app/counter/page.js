@@ -1,13 +1,17 @@
-"use client";
-import { useState } from "react";
+
 import Count from "./count";
 
+export const metadata = {
+  title: {
+    absolute: "counter page",
+  },
+};
+
 const page = () => {
-  const [count, setCount] = useState(0);
   return (
     <>
       <h2>شمارنده</h2>
-      <Count count={count} setCount={setCount} />
+      <Count />
     </>
   );
 };

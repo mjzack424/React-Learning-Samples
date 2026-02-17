@@ -12,7 +12,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "دومین پروژه NEXT JS من",
+  // title: "دومین پروژه NEXT JS من",
+  title: {
+    default: "Quiz App",
+    template: "%s | Quiz App"
+  },
   description: "created by zack424",
 };
 
