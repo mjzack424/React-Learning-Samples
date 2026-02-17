@@ -1,3 +1,14 @@
+export async function generateStaticParams() {
+  const posts = await fetch("https://json.xstack.ir/api/v1/products").then(
+    (res) => res.json(),
+  );
+  
+  const final = posts.data.map((post) => ({
+    slug: post.slug,
+  }));
+  return final;
+}
+
 export async function generateMetadata({ params, searchParams }) {
   const resolvedSearchParams = await params;
 
@@ -12,11 +23,7 @@ const Blog = async ({ params }) => {
   return (
     <div>
       <h2>وبلاگ</h2>
-      <h3>
-        مقاله
-        {" "}
-        {newPar.slug}
-      </h3>
+      <h3>مقاله {newPar.slug}</h3>
     </div>
   );
 };
