@@ -1,8 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const count = () => {
   const [count, setCount] = useState(0);
+  const router = useRouter();
+  useEffect(() => {
+    if (count === 3) {
+      router.push("/");
+    }
+  }, [count]);
 
   return (
     <>
