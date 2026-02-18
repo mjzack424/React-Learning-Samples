@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-const quiz = () => {
+import { quiz } from "../data";
+
+const page = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [checked, setChecked] = useState(false);
@@ -13,11 +15,48 @@ const quiz = () => {
     correctAnswers: 0,
     wrongAnswers: 0,
   });
+
+  const { questions } = quiz;
+  const { answers, correctAnswers } = questions[activeQuestion];
+
   return (
-    <>
-      <h1>quiz</h1>
-    </>
+    <div className="container">
+      <h1>صفحه آزمون</h1>
+      <div>{/* Quiz count*/}</div>
+      <div>
+        {!showResult ? (
+          <div className="quiz-container">
+            <h3>{questions[activeQuestion].question}</h3>
+            {answers.map((answer, index) => (
+              <li
+                key={index}
+                onClick={() => {}}
+                className={
+                  selectedAnswerIndex === index ? "li-selected" : "li-hover"
+                }
+              >
+                <span>{answer}</span>
+              </li>
+            ))}
+            {checked ? (
+              <button className="btn" onClick={() => {}}>
+                {activeQuestion === questions.length - 1 ? "پایان" : "بعدی"}
+              </button>
+            ) : (
+              <button className="btn-disabled" onClick={() => {}} disabled>
+                {activeQuestion === questions.length - 1 ? "پایان" : "بعدی"}
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="quiz-container">
+            <h3>نتایج</h3>
+            {/* Show quiz result */}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default quiz;
+export default page;
