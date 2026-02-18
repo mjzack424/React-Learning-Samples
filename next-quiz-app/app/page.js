@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function home() {
+async function wait() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+}
+
+export default async function Home() {
+  await wait();
+
   return (
     <main>
       <div className="container">
