@@ -10,8 +10,6 @@ const page = () => {
   const [checked, setChecked] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
   const [showResult, setShowResult] = useState(false);
-  const [answers, setAnswers] = useState([]);
-  const [correctAnswer, setCorrectAnswer] = useState("");
   const [result, setResult] = useState({
     score: 0,
     correctAnswers: 0,
@@ -19,26 +17,7 @@ const page = () => {
   });
 
   const { questions } = quiz;
-
-  useEffect(() => {
-    getData();
-  }, [result]);
-
-  const getData = () => {
-    setAnswers(questions[activeQuestion].answers);
-    setCorrectAnswer(questions[activeQuestion].correctAnswer);
-  };
-
-  const timeDelay = async () => {
-    const delay = 1 + Math.floor(Math.random() * 5);
-    console.log(`Delay: ${delay}`);
-
-    await timeout(delay * 1000); //For example 2000 ms = 2s
-  };
-
-  const timeout = (delay) => {
-    return new Promise((time) => setTimeout(time, delay));
-  };
+  const { answers, correctAnswer } = questions[activeQuestion];
 
   // Select And Check'
   const onAnswerSelected = (answer, index) => {
@@ -67,15 +46,13 @@ const page = () => {
     );
     if (activeQuestion !== questions.length - 1) {
       setActiveQuestion((prev) => prev + 1);
-      setCorrectAnswer("");
-      setAnswers([]);
     } else {
       setActiveQuestion(0);
       setShowResult(true);
     }
     setChecked(false);
   };
-
+  // throw new Error();
   return (
     <div className="container">
       <h1>صفحه آزمون</h1>
@@ -113,7 +90,7 @@ const page = () => {
                     />
                   }
                 >
-                  <span>{timeDelay().then(() => answer)}</span>
+                  <span>{answer}</span>
                 </Suspense>
               </li>
             ))}
