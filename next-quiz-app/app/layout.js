@@ -1,5 +1,5 @@
 import "./globals.css";
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 
 import localFont from "next/font/local";
 
@@ -18,6 +18,7 @@ const vazir = localFont({
   display: "swap",
 });
 export default function RootLayout({ children }) {
+  throw new Error();
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
       <body>{children}</body>
