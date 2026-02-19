@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import { quiz } from "../data";
 
@@ -21,11 +21,24 @@ const page = () => {
   const { questions } = quiz;
 
   useEffect(() => {
-    setTimeout(() => {
-      setAnswers(questions[activeQuestion].answers);
-      setCorrectAnswer(questions[activeQuestion].correctAnswer);
-    }, 2000);
+    getData();
   }, [result]);
+
+  const getData = () => {
+    setAnswers(questions[activeQuestion].answers);
+    setCorrectAnswer(questions[activeQuestion].correctAnswer);
+  };
+
+  const timeDelay = async () => {
+    const delay = 1 + Math.floor(Math.random() * 5);
+    console.log(`Delay: ${delay}`);
+
+    await timeout(delay * 1000); //For example 2000 ms = 2s
+  };
+
+  const timeout = (delay) => {
+    return new Promise((time) => setTimeout(time, delay));
+  };
 
   // Select And Check'
   const onAnswerSelected = (answer, index) => {
@@ -78,23 +91,32 @@ const page = () => {
         {!showResult ? (
           <div className="quiz-container">
             <h3>{questions[activeQuestion].question}</h3>
-            {answers.length > 0 ? (
-              answers.map((answer, index) => (
-                <li
-                  key={index}
-                  onClick={() => {
-                    onAnswerSelected(answer, index);
-                  }}
-                  className={
-                    selectedAnswerIndex === index ? "li-selected" : "li-hover"
+            {answers.map((answer, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  onAnswerSelected(answer, index);
+                }}
+                className={
+                  selectedAnswerIndex === index ? "li-selected" : "li-hover"
+                }
+              >
+                <Suspense
+                  fallback={
+                    <Skeleton
+                      count={1}
+                      direction="rtl"
+                      duration={2}
+                      height={50}
+                      baseColor="#7a7a7a"
+                      highlightColor="#d8d8d8"
+                    />
                   }
                 >
-                  <span>{answer}</span>
-                </li>
-              ))
-            ) : (
-              <Skeleton count={4} direction="rtl" duration={2} height={50} baseColor="#7a7a7a" highlightColor="#d8d8d8"/>
-            )}
+                  <span>{timeDelay().then(() => answer)}</span>
+                </Suspense>
+              </li>
+            ))}
 
             {checked ? (
               <button className="btn" onClick={nextQuestion}>
