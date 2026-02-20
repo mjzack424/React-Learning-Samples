@@ -18,7 +18,7 @@ const vazir = localFont({
   display: "swap",
 });
 export default function RootLayout({ children }) {
-  throw new Error();
+  // throw new Error();
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
       <body>{children}</body>

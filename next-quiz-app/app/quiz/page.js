@@ -54,7 +54,7 @@ const page = () => {
   };
   // throw new Error();
   return (
-    <div className="container">
+    <>
       <h1>صفحه آزمون</h1>
       <div>
         {!showResult ? (
@@ -129,7 +129,7 @@ const page = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
