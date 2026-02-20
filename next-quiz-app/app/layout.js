@@ -17,11 +17,14 @@ const vazir = localFont({
   src: "./Vazir.woff2",
   display: "swap",
 });
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, about }) {
   // throw new Error();
   return (
     <html lang="fa" dir="rtl" className={vazir.className}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {about}
+      </body>
     </html>
   );
 }

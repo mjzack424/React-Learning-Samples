@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import { quiz } from "../data";
 
-const page = () => {
+const QuizPage  = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [checked, setChecked] = useState(false);
@@ -54,7 +54,7 @@ const page = () => {
   };
   // throw new Error();
   return (
-    <>
+    <div className="container">
       <h1>صفحه آزمون</h1>
       <div>
         {!showResult ? (
@@ -129,8 +129,8 @@ const page = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
-export default page;
+export default QuizPage ;
