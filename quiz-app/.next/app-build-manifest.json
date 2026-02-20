@@ -16,40 +16,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/error.js"
     ],
-    "/about/page": [
+    "/quiz/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
+      "static/chunks/app/quiz/error.js"
     ],
-    "/about/layout": [
+    "/quiz/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/layout.js"
-    ],
-    "/about/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/loading.js"
-    ],
-    "/about/@info/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/@info/page.js"
-    ],
-    "/about/@info/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/@info/loading.js"
-    ],
-    "/about/@skills/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/@skills/page.js"
-    ],
-    "/about/@skills/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/@skills/loading.js"
+      "static/chunks/app/quiz/loading.js"
     ],
     "/quiz/page": [
       "static/chunks/webpack.js",
@@ -60,16 +35,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
-    ],
-    "/quiz/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/quiz/loading.js"
-    ],
-    "/quiz/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/quiz/error.js"
     ]
   }
 }
