@@ -1,7 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
   "/about/page": "app/about/page.js",
   "/quiz/page": "app/quiz/page.js",
+  "/api/username/route": "app/api/username/route.js",
   "/about/@modal/(.)photo/page": "app/about/@modal/(.)photo/page.js"
 }
