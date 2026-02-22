@@ -1,8 +1,8 @@
-// File: G:\MyProjects\WebDeveloper\React\React-Samples\project\React-Learning-Samples\quiz-app-tail\app\under-construction\page.js
-import * as entry from '../../../../app/under-construction/page.js'
+// File: G:\MyProjects\WebDeveloper\React\React-Samples\project\React-Learning-Samples\quiz-app-tail\app\quiz\page.js
+import * as entry from '../../../../app/quiz/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../app/under-construction/page.js')
+type TEntry = typeof import('../../../../app/quiz/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

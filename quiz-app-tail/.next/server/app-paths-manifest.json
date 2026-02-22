@@ -1,3 +1,5 @@
 {
-  "/under-construction/page": "app/under-construction/page.js"
+  "/not-found": "app/not-found.js",
+  "/quiz/page": "app/quiz/page.js",
+  "/about/photo/page": "app/about/photo/page.js"
 }
