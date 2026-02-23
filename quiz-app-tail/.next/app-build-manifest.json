@@ -51,15 +51,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/quiz/layout.js"
     ],
-    "/quiz/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/quiz/error.js"
-    ],
     "/quiz/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/quiz/loading.js"
+    ],
+    "/quiz/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/quiz/error.js"
     ]
   }
 }
