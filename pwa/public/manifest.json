@@ -1,15 +1,16 @@
 {
   "name": "Weather Application",
   "short_name": "WeatherApp",
-  "icon": [
+  "icons" : [
     {
       "src": "/images/logo.png",
-      "type": "image.png",
-      "size": "1024x1024"
+      "type": "image/png",
+      "sizes": "1024x1024"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color" : "#000000",
   "background_color": "#ffffff"
+
 }
