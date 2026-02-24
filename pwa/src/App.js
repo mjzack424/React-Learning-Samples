@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import InstallButton from "./component/InstallButton";
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -21,7 +22,7 @@ const App = () => {
           q: city,
           units: "metric",
           APPID: API_KEY,
-          lang: "fa"
+          lang: "fa",
         },
       });
 
@@ -37,6 +38,7 @@ const App = () => {
   return (
     <>
       <div className="main-container">
+        <InstallButton />
         <input
           type="text"
           className="search"
