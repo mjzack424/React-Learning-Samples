@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background-color: rgb(7, 6, 32);
+  color: whitesmoke;
+}
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  text-align: center;
+}
